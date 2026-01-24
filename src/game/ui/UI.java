@@ -1,5 +1,7 @@
 package game.ui;
 
+import game.GameData;
+
 import java.text.Normalizer;
 
 public interface UI {
@@ -9,6 +11,8 @@ public interface UI {
     String scanNextLine();
     void resetLastString();
     String getLastString();
+
+    GameData loadGameData();
 
     void start();
 

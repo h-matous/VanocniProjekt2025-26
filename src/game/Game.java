@@ -9,6 +9,7 @@ public class Game {
     private SpaceshipMap map;
     private Player player;
 
+    private GameData world;
 
     public Game() {
         this.ui = new ConsoleUI();
@@ -17,7 +18,7 @@ public class Game {
     }
 
     public void play() {
-
+        ui.start();
     }
 
 }
