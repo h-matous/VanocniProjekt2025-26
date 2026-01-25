@@ -2,19 +2,31 @@ package game.item;
 
 public class Item {
     private String name;
-    private boolean isMovable;
-    private boolean isInteractable; //Is usable
+    private boolean movable;
+    private boolean interactable; //Is usable
+
+    private String location;
+
+    public Item() {}
 
 
-    public Item(String name) {
-        this.name = name;
-        this.isMovable = false;
-        this.isInteractable = false;
+    public String getName() {
+        return name;
     }
 
-    public Item(String name, boolean isMovable, boolean isInteractable) {
+    public void setName(String name) {
         this.name = name;
-        this.isMovable = isMovable;
-        this.isInteractable = isInteractable;
+    }
+
+    public void setMovable(boolean movable) {
+        this.movable = movable;
+    }
+
+    public void setInteractable(boolean interactable) {
+        this.interactable = interactable;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 }

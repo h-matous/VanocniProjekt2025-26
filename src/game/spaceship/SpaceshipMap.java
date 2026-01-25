@@ -1,6 +1,5 @@
 package game.spaceship;
 
-import game.character.Character;
 import game.ui.UI;
 
 import java.util.HashMap;
@@ -13,6 +12,7 @@ public class SpaceshipMap {
         rooms = new HashMap<>();
     }
 
+    /*
     public void initializeRooms() {
         rooms.put("kokpit", new Room("Kokpit", new Character("Orion")));
         rooms.put("chodba", new Room("Chodba"));
@@ -24,6 +24,7 @@ public class SpaceshipMap {
         rooms.put("laborator", new Room("Laboratoř"));
         rooms.put("strojovna", new Room("Strojovna"));
     }
+    */
 
     public static Room getRoom(String str) {
         String roomName = UI.toLowercaseAscii(str);

@@ -1,7 +1,5 @@
 package game.ui;
 
-import game.GameData;
-
 import java.text.Normalizer;
 
 public interface UI {
@@ -11,10 +9,6 @@ public interface UI {
     String scanNextLine();
     void resetLastString();
     String getLastString();
-
-    GameData loadGameData();
-
-    void start();
 
     /**
      * Slouží k převodu vstupního řetězce do lépe zpracovatelného stavu (odstraní diakritiku a převede do malých písmen)

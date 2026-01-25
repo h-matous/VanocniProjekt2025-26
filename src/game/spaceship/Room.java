@@ -1,57 +1,38 @@
 package game.spaceship;
 
-import game.character.Character;
-import game.item.Item;
+import game.ui.UI;
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class Room {
     private String name;
 
-    private ArrayList<Item> items; //objects
-    private Character character;
-    private ArrayList<Room> availableRooms;
+    private ArrayList<String> availableRoomNames;
+
+    public Room() {}
 
 
-    public void addItem(Item item) {
-        this.items.add(item);
+    public String getName() {
+        return name;
     }
 
-    public void addAvailableRoom(Room room) {
-        this.availableRooms.add(room);
+    public boolean isNextToRoom(String roomName) {
+        for (int i = 0; i < availableRoomNames.size(); i++) {
+            if (UI.toLowercaseAscii(name).equals(UI.toLowercaseAscii(roomName))) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
-
-    public Room(String name) {
+    public void setName(String name) {
         this.name = name;
-
-        this.items = new ArrayList<>();
-        this.character = null;
-        this.availableRooms = new ArrayList<>();
     }
 
-    public Room(String name, Item[] items) {
-        this.name = name;
-
-        this.items = new ArrayList<>(List.of(items));
-        this.character = null;
-        this.availableRooms = new ArrayList<>();
+    public void setAvailableRoomNames(ArrayList<String> availableRoomNames) {
+        this.availableRoomNames = availableRoomNames;
     }
 
-    public Room(String name, Character character) {
-        this.name = name;
-
-        this.items = new ArrayList<>();
-        this.character = character;
-        this.availableRooms = new ArrayList<>();
-    }
-
-    public Room(String name, Item[] items, Character character) {
-        this.name = name;
-
-        this.items = new ArrayList<>(List.of(items));
-        this.character = character;
-        this.availableRooms = new ArrayList<>();
-    }
 }
