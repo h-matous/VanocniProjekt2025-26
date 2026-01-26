@@ -21,5 +21,7 @@
     {"name": "Laboratoř", "availableRoomNames": ["Hangár", "Strojovna", "Sklad"]},
     {"name": "Sklad", "availableRoomNames": ["Hangár", "Strojovna", "Laboratoř"]},
     {"name": "Strojovna", "availableRoomNames": ["Sklad", "Laboratoř"]}
-  ]
+  ],
+
+  "playerRoomName": "Kokpit"
 }

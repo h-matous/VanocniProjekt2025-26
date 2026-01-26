@@ -3,6 +3,7 @@ package game;
 import game.item.Item;
 import game.character.Character;
 import game.spaceship.Room;
+import game.ui.UI;
 
 import java.util.ArrayList;
 
@@ -11,6 +12,8 @@ public class GameData {
     private ArrayList<Item> items;
     private ArrayList<Character> characters;
     private ArrayList<Room> rooms;
+
+    private String playerRoomName;
 
     /**
      * Empty constructor for loading GameData with jackson
@@ -24,13 +27,15 @@ public class GameData {
      */
     public Room findRoom(String name) {
         for (Room room : rooms) {
-            if (room.getName().equals(name)) {
+            if (UI.toLowercaseAscii(room.getName()).equals(UI.toLowercaseAscii(name))) {
                 return room;
             }
         }
 
         throw new IllegalArgumentException("Neexistuje lokace s jménem: " + name);
     }
+    //TODO: vylepšit, přidat metodu jestli jsou 2 místnosti vedle sebe a pak použít v commands.Jdi u metody execute
+
 
     public void setItems(ArrayList<Item> items) {
         this.items = items;
@@ -44,6 +49,10 @@ public class GameData {
         this.rooms = rooms;
     }
 
+    public void setPlayerRoomName(String playerRoomName) {
+        this.playerRoomName = playerRoomName;
+    }
+
     public ArrayList<Item> getItems() {
         return items;
     }
@@ -54,6 +63,10 @@ public class GameData {
 
     public ArrayList<Room> getRooms() {
         return rooms;
+    }
+
+    public String getPlayerRoomName() {
+        return playerRoomName;
     }
 
     @Override

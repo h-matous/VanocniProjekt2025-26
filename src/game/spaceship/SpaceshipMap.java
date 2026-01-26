@@ -4,7 +4,7 @@ import game.ui.UI;
 
 import java.util.HashMap;
 
-
+//TODO: smazat tuhle třídu
 public class SpaceshipMap {
     static HashMap<String, Room> rooms;
 

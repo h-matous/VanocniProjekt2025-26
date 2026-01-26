@@ -1,5 +1,7 @@
 package game.command;
 
+import game.GameData;
+
 public abstract class Command {
     protected String command;
 
@@ -7,7 +9,7 @@ public abstract class Command {
         this.command = command;
     }
 
-    public abstract String execute();
+    public abstract String execute(String param, GameData world);
 
     public abstract boolean exit();
 }

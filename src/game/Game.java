@@ -47,7 +47,7 @@ public class Game {
                 ui.print("\nZadejte příkaz >>");
                 String userCommand = ui.scanNextLine();
 
-                ui.println(">> " + cmdHandler.fetchDecodeExecuteCommand(userCommand));
+                ui.println(">> " + cmdHandler.fetchDecodeExecuteCommand(userCommand, world));
             }
         }
         catch (Exception e) {

@@ -19,7 +19,7 @@ public class Room {
 
     public boolean isNextToRoom(String roomName) {
         for (int i = 0; i < availableRoomNames.size(); i++) {
-            if (UI.toLowercaseAscii(name).equals(UI.toLowercaseAscii(roomName))) {
+            if (UI.toLowercaseAscii(availableRoomNames.get(i)).equals(UI.toLowercaseAscii(roomName))) {
                 return true;
             }
         }
@@ -35,4 +35,21 @@ public class Room {
         this.availableRoomNames = availableRoomNames;
     }
 
+    public ArrayList<String> getAvailableRoomNames() {
+        return availableRoomNames;
+    }
+
+    public String availableRoomNamesText() {
+        String toReturn = "";
+        for (int i = 0; i < availableRoomNames.size(); i++) {
+
+            toReturn = toReturn + availableRoomNames.get(i);
+
+            if (i < availableRoomNames.size() - 1) {
+                toReturn = toReturn + ", ";
+            }
+        }
+
+        return toReturn;
+    }
 }
