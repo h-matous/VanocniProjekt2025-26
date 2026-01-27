@@ -9,7 +9,7 @@ public class Jdi extends Command {
     public String execute(String param, GameData world) {
         String locationName = param.split(" ")[0];
 
-        if (world.findRoom(world.getPlayerRoomName()).isNextToRoom(locationName)) {
+        if (world.playerNextToRoom(locationName)) {
             world.setPlayerRoomName(world.findRoom(locationName).getName());
 
             return "Nacházíte se v místnosti: \"" + world.getPlayerRoomName() + "\"." + "\nMůžete se posunout do místností: " + world.findRoom(world.getPlayerRoomName()).availableRoomNamesText();

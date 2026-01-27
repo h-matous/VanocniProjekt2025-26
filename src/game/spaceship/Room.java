@@ -27,17 +27,6 @@ public class Room {
         return false;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setAvailableRoomNames(ArrayList<String> availableRoomNames) {
-        this.availableRoomNames = availableRoomNames;
-    }
-
-    public ArrayList<String> getAvailableRoomNames() {
-        return availableRoomNames;
-    }
 
     public String availableRoomNamesText() {
         String toReturn = "";
@@ -51,5 +40,17 @@ public class Room {
         }
 
         return toReturn;
+    }
+
+    public void setAvailableRoomNames(ArrayList<String> availableRoomNames) {
+        this.availableRoomNames = availableRoomNames;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public ArrayList<String> getAvailableRoomNames() {
+        return availableRoomNames;
     }
 }

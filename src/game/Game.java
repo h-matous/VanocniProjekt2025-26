@@ -2,7 +2,6 @@ package game;
 
 
 import game.command.CommandHandler;
-import game.spaceship.SpaceshipMap;
 import game.ui.ConsoleUI;
 import game.ui.UI;
 
@@ -10,7 +9,6 @@ import game.ui.Loader;
 
 public class Game {
     private UI ui;
-    private SpaceshipMap map;
     private Player player;
 
     private CommandHandler cmdHandler;
@@ -23,7 +21,6 @@ public class Game {
 
     public Game() {
         this.ui = new ConsoleUI();
-        this.map = new SpaceshipMap();
         this.player = new Player();
 
         this.cmdHandler = new CommandHandler();

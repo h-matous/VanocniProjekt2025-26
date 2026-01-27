@@ -37,44 +37,44 @@ public class GameData {
     //TODO: vylepšit, přidat metodu jestli jsou 2 místnosti vedle sebe a pak použít v commands.Jdi u metody execute
 
 
-    public void setItems(ArrayList<Item> items) {
-        this.items = items;
-    }
-
-    public void setCharacters(ArrayList<Character> characters) {
-        this.characters = characters;
-    }
-
-    public void setRooms(ArrayList<Room> rooms) {
-        this.rooms = rooms;
-    }
-
     public void setPlayerRoomName(String playerRoomName) {
         this.playerRoomName = playerRoomName;
     }
 
-    public ArrayList<Item> getItems() {
-        return items;
-    }
-
-    public ArrayList<Character> getCharacters() {
-        return characters;
-    }
-
-    public ArrayList<Room> getRooms() {
-        return rooms;
+    public boolean playerNextToRoom(String roomName) {
+        return UI.toLowercaseAscii(playerRoomName).equals(UI.toLowercaseAscii(roomName));
     }
 
     public String getPlayerRoomName() {
         return playerRoomName;
     }
 
-    @Override
-    public String toString() {
-        return "GameData{" +
-                "items=" + items +
-                ", characters=" + characters +
-                ", rooms=" + rooms +
-                '}';
+    public Room getPlayerRoom() {
+        return findRoom(getPlayerRoomName());
+    }
+
+
+    public ArrayList<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(ArrayList<Item> items) {
+        this.items = items;
+    }
+
+    public ArrayList<Character> getCharacters() {
+        return characters;
+    }
+
+    public void setCharacters(ArrayList<Character> characters) {
+        this.characters = characters;
+    }
+
+    public ArrayList<Room> getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(ArrayList<Room> rooms) {
+        this.rooms = rooms;
     }
 }

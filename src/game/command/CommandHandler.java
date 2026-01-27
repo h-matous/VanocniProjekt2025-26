@@ -7,6 +7,7 @@ import game.command.commands.Jdi;
 import game.command.commands.Konec;
 import game.command.commands.Pomoc;
 
+import game.command.commands.Prozkoumat;
 import game.ui.UI;
 
 public class CommandHandler {
@@ -25,6 +26,7 @@ public class CommandHandler {
         commandMap.put("jdi", new Jdi());
         commandMap.put("konec", new Konec());
         commandMap.put("pomoc", new Pomoc());
+        commandMap.put("prozkoumat", new Prozkoumat());
         //Všechny příkazy prostě blabla
     }
 

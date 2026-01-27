@@ -23,4 +23,16 @@ public class Character {
     public void setMonologue(ArrayList<String> monologue) {
         this.monologue = monologue;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public ArrayList<String> getMonologue() {
+        return monologue;
+    }
 }
