@@ -7,7 +7,7 @@ import game.GameData;
 public class Konec extends Command {
     @Override
     public String execute(String param, GameData world) {
-        return "";
+        return "Ukončování programu...";
     }
 
     @Override

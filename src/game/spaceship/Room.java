@@ -19,7 +19,7 @@ public class Room {
 
     public boolean isNextToRoom(String roomName) {
         for (int i = 0; i < availableRoomNames.size(); i++) {
-            if (UI.toLowercaseAscii(availableRoomNames.get(i)).equals(UI.toLowercaseAscii(roomName))) {
+            if (UI.toLowercaseAscii(availableRoomNames.get(i)).equals(UI.toLowercaseAscii(roomName).trim())) {
                 return true;
             }
         }

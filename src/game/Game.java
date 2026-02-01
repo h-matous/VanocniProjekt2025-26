@@ -39,12 +39,15 @@ public class Game {
     public void play() {
         try {
             //Zavolání např. nějaké fileWrite metody
-
             while (!cmdHandler.isAboutToExit()) {
+                ui.println("Nacházíte se v místnosti: " + world.getPlayerRoomName());
+                ui.println("Můžete se posunout do místností: " + world.getPlayerRoom().availableRoomNamesText());
+
                 ui.print("\nZadejte příkaz >>");
                 String userCommand = ui.scanNextLine();
 
                 ui.println(">> " + cmdHandler.fetchDecodeExecuteCommand(userCommand, world));
+                ui.print("\n");
             }
         }
         catch (Exception e) {
@@ -54,6 +57,3 @@ public class Game {
 
 
 }
-
-
-//TODO: Všechno

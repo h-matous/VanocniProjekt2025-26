@@ -3,13 +3,24 @@ package game.command.commands;
 import game.command.Command;
 
 import game.GameData;
-import game.spaceship.Room;
 import game.ui.UI;
 
 public class Prozkoumat extends Command {
     @Override
     public String execute(String param, GameData world) {
-        return "Hmmm, tak v této místnosti vidím itemy: " + itemsInPlayerRoomText(world) + "\n";
+        StringBuilder toReturn = new StringBuilder();
+
+        if (areAnyItemsInPlayerRoom(world)) {
+            toReturn.append("Hmmm, tak v této místnosti vidím itemy: ");
+            toReturn.append(itemsInPlayerRoomText(world));
+        }
+        else {
+            toReturn.append("Žádné předměty v této místnosti nevidím...");
+        }
+        toReturn.append("\n");
+
+
+        return toReturn.toString();
     }
     //TODO: a je zde postava if nejaka tam je
 
@@ -18,21 +29,36 @@ public class Prozkoumat extends Command {
         return false;
     }
 
+    private boolean areAnyItemsInPlayerRoom(GameData world) {
+        for (int i = 0; i < world.getItems().size(); i++) {
+            if (UI.toLowercaseAscii(world.getPlayerRoom().getName()).equals(UI.toLowercaseAscii(world.getItems().get(i).getLocation()))) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    //TODO: ošetřit nepohyblivé itemy (Panel v komunikacích) a vytisknout je na nový řádek, něco jako sice tu nevidím žádné itemy, ale je tu nějaký panel... bla bla bla
     private String itemsInPlayerRoomText(GameData world) {
-        String toReturn = "";
+        StringBuilder toReturn = new StringBuilder();
+
+        //Number of Items in the same room as the player
+        int itemCount = 0;
 
         for (int i = 0; i < world.getItems().size(); i++) {
 
             if (UI.toLowercaseAscii(world.getPlayerRoom().getName()).equals(UI.toLowercaseAscii(world.getItems().get(i).getLocation()))) {
-                toReturn = toReturn + world.getItems().get(i);
+                toReturn.append(world.getItems().get(i).getName());
+                itemCount++;
 
-                if (i < world.getItems().size() - 1) {
-                    toReturn = toReturn + ", ";
+                if (i < itemCount - 1) {
+                    toReturn.append(", ");
                 }
             }
 
         }
 
-        return toReturn;
+        return toReturn.toString();
     }
 }

@@ -22,19 +22,20 @@ public class GameData {
 
     /**
      * Finds a specific room by its name.
-     * @param name the name of the room to be found
+     * @param roomName the name of the room to be found
      * @return the matching room
      */
-    public Room findRoom(String name) {
+    public Room findRoom(String roomName) {
         for (Room room : rooms) {
-            if (UI.toLowercaseAscii(room.getName()).equals(UI.toLowercaseAscii(name))) {
+            if (UI.toLowercaseAscii(room.getName()).equals(UI.toLowercaseAscii(roomName))) {
                 return room;
             }
         }
 
-        throw new IllegalArgumentException("Neexistuje lokace s jménem: " + name);
+        throw new IllegalArgumentException("Neexistuje lokace s názvem: \"" + roomName + "\"");
     }
     //TODO: vylepšit, přidat metodu jestli jsou 2 místnosti vedle sebe a pak použít v commands.Jdi u metody execute
+
 
 
     public void setPlayerRoomName(String playerRoomName) {
@@ -42,7 +43,7 @@ public class GameData {
     }
 
     public boolean playerNextToRoom(String roomName) {
-        return UI.toLowercaseAscii(playerRoomName).equals(UI.toLowercaseAscii(roomName));
+        return getPlayerRoom().isNextToRoom(roomName);
     }
 
     public String getPlayerRoomName() {

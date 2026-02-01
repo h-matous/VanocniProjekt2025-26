@@ -12,11 +12,12 @@ public class Jdi extends Command {
         if (world.playerNextToRoom(locationName)) {
             world.setPlayerRoomName(world.findRoom(locationName).getName());
 
-            return "Nacházíte se v místnosti: \"" + world.getPlayerRoomName() + "\"." + "\nMůžete se posunout do místností: " + world.findRoom(world.getPlayerRoomName()).availableRoomNamesText();
+            return "Přicházíte do místnosti: " + world.getPlayerRoomName();
         }
 
-        return "Nelze se posunout!" + "\nMůžete se posunout do místností: " + world.findRoom(world.getPlayerRoomName()).availableRoomNamesText();
+        return "Nelze se posunout!";
     }
+    //TODO: napsat třeba, že lokace neexistuje místo toho, že se vypisuje "Nelze se posunout!" nebo že se k daný lokaci nemuze přímo dostat.
 
     @Override
     public boolean exit() {

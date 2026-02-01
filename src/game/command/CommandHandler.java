@@ -21,20 +21,25 @@ public class CommandHandler {
         initializeCommands();
     }
 
-    //TODO: vyčíst všechny příkazy z HashMapy
+
     public void initializeCommands() {
         commandMap.put("jdi", new Jdi());
         commandMap.put("konec", new Konec());
         commandMap.put("pomoc", new Pomoc());
+        commandMap.put("napoveda", new Pomoc());
+        commandMap.put("vezmi", new Pomoc());
+        commandMap.put("poloz", new Pomoc());
+        commandMap.put("pouzij", new Pomoc());
+        commandMap.put("mluv", new Pomoc());
         commandMap.put("prozkoumat", new Prozkoumat());
-        //Všechny příkazy prostě blabla
+        commandMap.put("zkombinovat", new Prozkoumat());
     }
 
     public boolean isAboutToExit() {
         return exit;
     }
 
-    //TODO: Přidat "param" do execute v Command
+
 
     public String fetchDecodeExecuteCommand(String userCommand, GameData world) {
 
@@ -61,7 +66,7 @@ public class CommandHandler {
             exit = commandMap.get(command).exit();
         }
         else {
-            toReturn = "Tento příkaz není definován";
+            toReturn = "Tento příkaz není definován!";
         }
 
         return toReturn;
