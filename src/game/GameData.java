@@ -47,6 +47,19 @@ public class GameData {
         throw new IllegalArgumentException("Neexistuje postava s názvem: \"" + characterName + "\"");
     }
 
+
+    public Item findItem(String itemName) {
+        for (Item item : items) {
+            if (UI.toLowercaseAscii(item.getName()).equals(UI.toLowercaseAscii(itemName))) {
+                return item;
+            }
+        }
+
+        throw new IllegalArgumentException("Neexistuje item s názvem: \"" + itemName + "\"");
+    }
+
+
+
     public void setPlayerRoom(Room playerRoom) {
         this.playerRoomName = playerRoom.getName();
     }

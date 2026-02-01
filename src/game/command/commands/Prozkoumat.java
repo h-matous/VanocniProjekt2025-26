@@ -57,10 +57,15 @@ public class Prozkoumat extends Command {
         int itemCount = 0;
 
         for (int i = 0; i < world.getItems().size(); i++) {
+            if (UI.toLowercaseAscii(world.getPlayerRoom().getName()).equals(UI.toLowercaseAscii(world.getItems().get(i).getLocation()))) {
+                itemCount++;
+            }
+        }
+
+        for (int i = 0; i < world.getItems().size(); i++) {
 
             if (UI.toLowercaseAscii(world.getPlayerRoom().getName()).equals(UI.toLowercaseAscii(world.getItems().get(i).getLocation()))) {
                 toReturn.append(world.getItems().get(i).getName());
-                itemCount++;
 
                 if (i < itemCount - 1) {
                     toReturn.append(", ");
