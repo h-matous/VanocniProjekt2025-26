@@ -1,4 +1,4 @@
-package game.spaceship;
+package game.room;
 
 import game.ui.UI;
 
@@ -17,9 +17,9 @@ public class Room {
         return name;
     }
 
-    public boolean isNextToRoom(String roomName) {
+    public boolean isNextToRoom(Room room) {
         for (int i = 0; i < availableRoomNames.size(); i++) {
-            if (UI.toLowercaseAscii(availableRoomNames.get(i)).equals(UI.toLowercaseAscii(roomName).trim())) {
+            if (UI.toLowercaseAscii(availableRoomNames.get(i)).equals(UI.toLowercaseAscii(room.getName()).trim())) {
                 return true;
             }
         }
@@ -29,17 +29,17 @@ public class Room {
 
 
     public String availableRoomNamesText() {
-        String toReturn = "";
+        StringBuilder toReturn = new StringBuilder();
         for (int i = 0; i < availableRoomNames.size(); i++) {
 
-            toReturn = toReturn + availableRoomNames.get(i);
+            toReturn.append(availableRoomNames.get(i));
 
             if (i < availableRoomNames.size() - 1) {
-                toReturn = toReturn + ", ";
+                toReturn.append(", ");
             }
         }
 
-        return toReturn;
+        return toReturn.toString();
     }
 
     public void setAvailableRoomNames(ArrayList<String> availableRoomNames) {

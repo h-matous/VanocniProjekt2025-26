@@ -1,12 +1,13 @@
 package game.command.commands;
 
 import game.command.Command;
-
 import game.GameData;
+import game.Player;
+
 
 public class Pouzij extends Command {
     @Override
-    public String execute(String param, GameData world) {
+    public String execute(String param, GameData world, Player player) {
         return "";
     }
 

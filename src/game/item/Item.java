@@ -2,9 +2,11 @@ package game.item;
 
 public class Item {
     private String name;
-    private boolean movable;
-    private boolean interactable; //Is usable
+
     private String location;
+
+    private boolean movable; //allows to be moved
+    private boolean interactable; //is usable
 
     public Item() {}
 

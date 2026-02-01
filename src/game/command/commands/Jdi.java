@@ -1,21 +1,33 @@
 package game.command.commands;
 
 import game.command.Command;
-
 import game.GameData;
+import game.Player;
+
+import game.room.Room;
+
 
 public class Jdi extends Command {
     @Override
-    public String execute(String param, GameData world) {
-        String locationName = param.split(" ")[0];
+    public String execute(String param, GameData world, Player player) {
+        String locationName = param.split(" ")[0].trim();
 
-        if (world.playerNextToRoom(locationName)) {
-            world.setPlayerRoomName(world.findRoom(locationName).getName());
+        Room roomToMoveTo;
 
-            return "Přicházíte do místnosti: " + world.getPlayerRoomName();
+        try {
+            roomToMoveTo = world.findRoom(locationName);
+        }
+        catch (IllegalArgumentException e) {
+            return e.getMessage();
         }
 
-        return "Nelze se posunout!";
+        if (world.playerNextToRoom(roomToMoveTo)) {
+            world.setPlayerRoom(roomToMoveTo);
+
+            return "Přicházíte do místnosti: " + world.getPlayerRoom().getName();
+        }
+
+        return "Nelze se odsud přímo posunout do této místnosti!";
     }
     //TODO: napsat třeba, že lokace neexistuje místo toho, že se vypisuje "Nelze se posunout!" nebo že se k daný lokaci nemuze přímo dostat.
 

@@ -6,6 +6,14 @@ public class Player {
     private Item inventory;
 
     public Player() {
-        this.inventory = null;
+        setInventory(null);
+    }
+
+    public void setInventory(Item inventory) {
+        this.inventory = inventory;
+    }
+
+    public Item getInventory() {
+        return inventory;
     }
 }

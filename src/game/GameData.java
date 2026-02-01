@@ -2,7 +2,7 @@ package game;
 
 import game.item.Item;
 import game.character.Character;
-import game.spaceship.Room;
+import game.room.Room;
 import game.ui.UI;
 
 import java.util.ArrayList;
@@ -37,18 +37,31 @@ public class GameData {
     //TODO: vylepšit, přidat metodu jestli jsou 2 místnosti vedle sebe a pak použít v commands.Jdi u metody execute
 
 
+    public Character findCharacter(String characterName) {
+        for (Character character : characters) {
+            if (UI.toLowercaseAscii(character.getName()).equals(UI.toLowercaseAscii(characterName))) {
+                return character;
+            }
+        }
 
-    public void setPlayerRoomName(String playerRoomName) {
-        this.playerRoomName = playerRoomName;
+        throw new IllegalArgumentException("Neexistuje postava s názvem: \"" + characterName + "\"");
     }
 
-    public boolean playerNextToRoom(String roomName) {
-        return getPlayerRoom().isNextToRoom(roomName);
+    public void setPlayerRoom(Room playerRoom) {
+        this.playerRoomName = playerRoom.getName();
     }
 
-    public String getPlayerRoomName() {
-        return playerRoomName;
+
+    public boolean playerNextToRoom(Room room) {
+        return getPlayerRoom().isNextToRoom(room);
     }
+
+    public boolean playerInTheRoomAsCharacter(Character character) {
+        return getPlayerRoom().equals(findRoom(character.getLocation()));
+    }
+
+
+
 
     public Room getPlayerRoom() {
         return findRoom(getPlayerRoomName());
@@ -57,6 +70,13 @@ public class GameData {
 
     public ArrayList<Item> getItems() {
         return items;
+    }
+
+    public void setPlayerRoomName(String playerRoomName) {
+        this.playerRoomName = playerRoomName;
+    }
+    public String getPlayerRoomName() {
+        return playerRoomName;
     }
 
     public void setItems(ArrayList<Item> items) {

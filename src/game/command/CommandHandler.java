@@ -3,11 +3,9 @@ package game.command;
 import java.util.HashMap;
 
 import game.GameData;
-import game.command.commands.Jdi;
-import game.command.commands.Konec;
-import game.command.commands.Pomoc;
+import game.Player;
+import game.command.commands.*;
 
-import game.command.commands.Prozkoumat;
 import game.ui.UI;
 
 public class CommandHandler {
@@ -26,14 +24,15 @@ public class CommandHandler {
         commandMap.put("jdi", new Jdi());
         commandMap.put("konec", new Konec());
         commandMap.put("pomoc", new Pomoc());
-        commandMap.put("napoveda", new Pomoc());
-        commandMap.put("vezmi", new Pomoc());
-        commandMap.put("poloz", new Pomoc());
-        commandMap.put("pouzij", new Pomoc());
-        commandMap.put("mluv", new Pomoc());
+        commandMap.put("napoveda", new Napoveda());
+        commandMap.put("vezmi", new Vezmi());
+        commandMap.put("poloz", new Poloz());
+        commandMap.put("pouzij", new Pouzij());
+        commandMap.put("mluv", new Mluv());
         commandMap.put("prozkoumat", new Prozkoumat());
-        commandMap.put("zkombinovat", new Prozkoumat());
+        commandMap.put("zkombinovat", new Zkombinovat());
     }
+
 
     public boolean isAboutToExit() {
         return exit;
@@ -41,8 +40,7 @@ public class CommandHandler {
 
 
 
-    public String fetchDecodeExecuteCommand(String userCommand, GameData world) {
-
+    public String fetchDecodeExecuteCommand(String userCommand, GameData world, Player player) {
         //Fetch + Decode
         String command = UI.toLowercaseAscii(userCommand).split(" ")[0];
         String param = "";
@@ -62,7 +60,7 @@ public class CommandHandler {
 
         //Execute
         if (commandMap.containsKey(command)) {
-            toReturn = commandMap.get(command).execute(param, world);
+            toReturn = commandMap.get(command).execute(param, world, player);
             exit = commandMap.get(command).exit();
         }
         else {

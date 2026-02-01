@@ -1,13 +1,14 @@
 package game.command.commands;
 
 import game.command.Command;
-
 import game.GameData;
+import game.Player;
+
 import game.ui.UI;
 
 public class Prozkoumat extends Command {
     @Override
-    public String execute(String param, GameData world) {
+    public String execute(String param, GameData world, Player player) {
         StringBuilder toReturn = new StringBuilder();
 
         if (areAnyItemsInPlayerRoom(world)) {
@@ -20,9 +21,18 @@ public class Prozkoumat extends Command {
         toReturn.append("\n");
 
 
+        if (areAnyCharactersInPlayerRoom(world)) {
+            toReturn.append("Jsou zde postavy s kterými bych si mohl promluvit: ");
+            toReturn.append(charactersInPlayerRoomText(world));
+        }
+        else {
+            toReturn.append("Nejsou tady žádné postavy s kterými bych si mohl promluvit.");
+        }
+        toReturn.append("\n");
+
+
         return toReturn.toString();
     }
-    //TODO: a je zde postava if nejaka tam je
 
     @Override
     public boolean exit() {
@@ -50,6 +60,39 @@ public class Prozkoumat extends Command {
 
             if (UI.toLowercaseAscii(world.getPlayerRoom().getName()).equals(UI.toLowercaseAscii(world.getItems().get(i).getLocation()))) {
                 toReturn.append(world.getItems().get(i).getName());
+                itemCount++;
+
+                if (i < itemCount - 1) {
+                    toReturn.append(", ");
+                }
+            }
+
+        }
+
+        return toReturn.toString();
+    }
+
+
+    private boolean areAnyCharactersInPlayerRoom(GameData world) {
+        for (int i = 0; i < world.getCharacters().size(); i++) {
+            if (UI.toLowercaseAscii(world.getPlayerRoom().getName()).equals(UI.toLowercaseAscii(world.getCharacters().get(i).getLocation()))) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private String charactersInPlayerRoomText(GameData world) {
+        StringBuilder toReturn = new StringBuilder();
+
+        //Number of Items in the same room as the player
+        int itemCount = 0;
+
+        for (int i = 0; i < world.getCharacters().size(); i++) {
+
+            if (UI.toLowercaseAscii(world.getPlayerRoom().getName()).equals(UI.toLowercaseAscii(world.getCharacters().get(i).getLocation()))) {
+                toReturn.append(world.getCharacters().get(i).getName());
                 itemCount++;
 
                 if (i < itemCount - 1) {

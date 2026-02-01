@@ -12,6 +12,22 @@ public class Character {
 
     public Character() {}
 
+
+    public String getProgressingMonologue() {
+        if (!monologue.isEmpty()) {
+            return monologue.get(0);
+        }
+
+        return "";
+    }
+
+    public void progressMonologue() {
+        if (!monologue.isEmpty()) {
+            monologue.remove(0);
+        }
+    }
+
+
     public void setName(String name) {
         this.name = name;
     }
