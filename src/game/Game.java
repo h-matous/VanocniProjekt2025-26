@@ -7,6 +7,8 @@ import game.ui.UI;
 
 import game.ui.Loader;
 
+//TODO: dokončit gametdata.json přidat všechny monology
+
 public class Game {
     private UI ui;
     private Player player;

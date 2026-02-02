@@ -10,7 +10,7 @@
   "characters": [
     {"name":  "Orion", "location":  "Kokpit", "monologue": ["Ale NEE... Porouchala se nám naše loď.", "Musíš to za mě opravit! Já nejsem tak schopný jako ty..."]},
     {"name":  "Xel", "location":  "Kajuta", "monologue": ["Ahoj, já jsem Xel, máš problém s tím, že vypadl proud?\nNejspíš se přetížil energetický systém, protože jsem si všiml, že je v Hlavní chodbě chybí pojistka, přetížila se na tolik, že vybouchla na střepy.\nToho jsem si všiml jen díky své superschopnosti vidět přes zdi.\nTaky jestli ji potřebuješ nahradit všiml jsem si, že ve skladu se nachází náhrada této pojistky."]},
-    {"name":  "R5", "location":  "Hangár", "monologue": ["Neodpovídá..."]}
+    {"name":  "R5", "location":  "Hangár", "monologue": ["...", "bla bla bla", "Regulární výrazy jsou dobrý"]}
   ],
   "rooms": [
     {"name": "Kokpit", "availableRoomNames": ["Chodba"]},

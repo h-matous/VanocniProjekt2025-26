@@ -3,17 +3,20 @@ package game.command.commands;
 import game.command.Command;
 import game.GameData;
 import game.Player;
+import game.item.Item;
 
 import game.ui.UI;
+
+import java.util.ArrayList;
 
 public class Prozkoumat extends Command {
     @Override
     public String execute(String param, GameData world, Player player) {
         StringBuilder toReturn = new StringBuilder();
 
-        if (areAnyItemsInPlayerRoom(world)) {
+        if (areAnyMovableItemsInPlayerRoom(world)) {
             toReturn.append("Hmmm, tak v této místnosti vidím itemy: ");
-            toReturn.append(itemsInPlayerRoomText(world));
+            toReturn.append(movableItemsInPlayerRoomText(world));
 
             if (areAnyNonMovableInteractableItemsInPlayerRoom(world)) {
                 toReturn.append("\n");
@@ -53,97 +56,84 @@ public class Prozkoumat extends Command {
         return false;
     }
 
+    private String getStringOfItemsText(ArrayList<Item> items) {
+        StringBuilder toReturn = new StringBuilder();
 
-    private boolean areAnyNonMovableInteractableItemsInPlayerRoom(GameData world) {
+        for (int i = 0; i < items.size(); i++) {
+            toReturn.append(items.get(i).getName());
+
+            if (i < items.size() - 1) {
+                toReturn.append(", ");
+            }
+        }
+
+        return toReturn.toString();
+    }
+
+
+    private ArrayList<Item> NonMovableInteractableItemsInPlayerRoom(GameData world) {
+        ArrayList<Item> toReturn = new ArrayList<>();
+
+        String playerLocation = UI.toLowercaseAscii(world.getPlayerRoom().getName());
+
         for (int i = 0; i < world.getItems().size(); i++) {
-            if (UI.toLowercaseAscii(world.getPlayerRoom().getName()).equals(UI.toLowercaseAscii(world.getItems().get(i).getLocation()))) {
-                if (!world.getItems().get(i).isMovable() && world.getItems().get(i).isInteractable()) {
+            Item currentItem = world.getItems().get(i);
+            String currentItemLocation = UI.toLowercaseAscii(currentItem.getLocation());
+
+            //Jestli se rovnají názvy lokace hráče a lokace itemů
+            if (playerLocation.equals(currentItemLocation)) {
+                //Jestli je item zároveň nemovitý a použitelný
+                if (!currentItem.isMovable() && currentItem.isInteractable()) {
                     //Bere v potaz, že právě nemovitý item je zároveň použitelný
-                    return true;
+                    toReturn.add(currentItem);
                 }
             }
         }
 
-        return false;
+        return toReturn;
+    }
+
+    private boolean areAnyNonMovableInteractableItemsInPlayerRoom(GameData world) {
+        return !NonMovableInteractableItemsInPlayerRoom(world).isEmpty();
     }
 
     private String NonMovableInteractableItemsInPlayerRoomText(GameData world) {
-        StringBuilder toReturn = new StringBuilder();
-
-        //Number of Items in the same room as the player
-        int itemCount = 0;
-
-        for (int i = 0; i < world.getItems().size(); i++) {
-            if (UI.toLowercaseAscii(world.getPlayerRoom().getName()).equals(UI.toLowercaseAscii(world.getItems().get(i).getLocation()))) {
-                if (!world.getItems().get(i).isMovable() && world.getItems().get(i).isInteractable()) {
-                    itemCount++;
-                }
-            }
-        }
-
-        for (int i = 0; i < world.getItems().size(); i++) {
-
-            if (UI.toLowercaseAscii(world.getPlayerRoom().getName()).equals(UI.toLowercaseAscii(world.getItems().get(i).getLocation()))) {
-                if (!world.getItems().get(i).isMovable() && world.getItems().get(i).isInteractable()) {
-                    toReturn.append(world.getItems().get(i).getName());
-
-                    if (i < itemCount - 1) {
-                        toReturn.append(", ");
-                    }
-                }
-            }
-
-        }
-
-        return toReturn.toString();
+        return getStringOfItemsText(NonMovableInteractableItemsInPlayerRoom(world));
     }
 
-    //Které jsou movité
-    private boolean areAnyItemsInPlayerRoom(GameData world) {
+
+    private ArrayList<Item> movableItemsInPlayerRoom(GameData world) {
+        //Jen které jsou movité (ty nemovité zároveň jakoby nejsou itemy, ale v backendu jsou)
+        ArrayList<Item> toReturn = new ArrayList<>();
+
+        String playerLocation = UI.toLowercaseAscii(world.getPlayerRoom().getName());
+
         for (int i = 0; i < world.getItems().size(); i++) {
-            if (UI.toLowercaseAscii(world.getPlayerRoom().getName()).equals(UI.toLowercaseAscii(world.getItems().get(i).getLocation()))) {
-                if (world.getItems().get(i).isMovable()) {
-                    return true;
+            Item currentItem = world.getItems().get(i);
+            String currentItemLocation = UI.toLowercaseAscii(currentItem.getLocation());
+
+            //Jestli se rovnají názvy lokace hráče a lokace itemů
+            if (playerLocation.equals(currentItemLocation)) {
+                //Jestli je item zároveň movitý
+                if (currentItem.isMovable()) {
+                    toReturn.add(currentItem);
                 }
             }
         }
 
-        return false;
+        return toReturn;
     }
 
-    //Jen pro movité
-    private String itemsInPlayerRoomText(GameData world) {
-        StringBuilder toReturn = new StringBuilder();
-
-        //Number of Items in the same room as the player
-        int itemCount = 0;
-
-        for (int i = 0; i < world.getItems().size(); i++) {
-            if (UI.toLowercaseAscii(world.getPlayerRoom().getName()).equals(UI.toLowercaseAscii(world.getItems().get(i).getLocation()))) {
-                if (world.getItems().get(i).isMovable()) {
-                    itemCount++;
-                }
-            }
-        }
-
-        for (int i = 0; i < world.getItems().size(); i++) {
-
-            if (UI.toLowercaseAscii(world.getPlayerRoom().getName()).equals(UI.toLowercaseAscii(world.getItems().get(i).getLocation()))) {
-                if (world.getItems().get(i).isMovable()) {
-                    toReturn.append(world.getItems().get(i).getName());
-
-                    if (i < itemCount - 1) {
-                        toReturn.append(", ");
-                    }
-                }
-            }
-
-        }
-
-        return toReturn.toString();
+    private boolean areAnyMovableItemsInPlayerRoom(GameData world) {
+        //Jen pro movité
+        return !movableItemsInPlayerRoom(world).isEmpty();
     }
-    //TODO: jak je if(i < itemCount -1), opravit ze nahazim vsechny itemy ve stejny mistnosti jako hrac do arraylistu a v tom budu iterovat, takhle se nekdy napise bez těch čárek mezi elementy
-    //TODO: nebo vlastně to je možná kvůli tomu, že to tam je jeden item bez lokace, kterej právě drží hráč v inventáři
+
+    private String movableItemsInPlayerRoomText(GameData world) {
+        //Jen pro movité
+        return getStringOfItemsText(movableItemsInPlayerRoom(world));
+    }
+
 
     private boolean areAnyCharactersInPlayerRoom(GameData world) {
         for (int i = 0; i < world.getCharacters().size(); i++) {
