@@ -13,12 +13,8 @@ public class Poloz extends Command {
         if (player.getInventory() != null) {
             Room newItemLocation;
 
-            try {
-                newItemLocation = world.getPlayerRoom();
-            }
-            catch (IllegalArgumentException e) {
-                return e.getMessage();
-            }
+            newItemLocation = world.getPlayerRoom();
+
 
             Item itemToPlace = player.getInventory();
 

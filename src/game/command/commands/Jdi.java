@@ -29,7 +29,7 @@ public class Jdi extends Command {
 
         return "Nelze se odsud přímo posunout do této místnosti!";
     }
-    //TODO: napsat třeba, že lokace neexistuje místo toho, že se vypisuje "Nelze se posunout!" nebo že se k daný lokaci nemuze přímo dostat.
+
 
     @Override
     public boolean exit() {

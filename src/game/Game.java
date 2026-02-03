@@ -6,6 +6,7 @@ import game.ui.ConsoleUI;
 import game.ui.UI;
 
 import game.ui.Loader;
+import game.ui.font;
 
 //TODO: dokončit gametdata.json přidat všechny monology
 
@@ -44,7 +45,7 @@ public class Game {
 
             //Zavolání např. nějaké fileWrite metody
             while (!cmdHandler.isAboutToExit()) {
-                ui.println("Nacházíte se v místnosti: " + world.getPlayerRoom().getName());
+                ui.println("Nacházíte se v místnosti: " + font.lightBlue() + world.getPlayerRoom().getName() + font.reset());
                 ui.println("Můžete se posunout do místností: " + world.getPlayerRoom().availableRoomNamesText());
 
                 if (player.getInventory() != null) {

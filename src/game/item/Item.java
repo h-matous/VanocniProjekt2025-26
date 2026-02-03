@@ -8,6 +8,8 @@ public class Item {
     private boolean movable; //allows to be moved
     private boolean interactable; //is usable
 
+    private boolean combinable;
+
     public Item() {}
 
 
@@ -41,5 +43,13 @@ public class Item {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public boolean isCombinable() {
+        return combinable;
+    }
+
+    public void setCombinable(boolean combinable) {
+        this.combinable = combinable;
     }
 }

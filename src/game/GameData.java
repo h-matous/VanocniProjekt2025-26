@@ -77,7 +77,12 @@ public class GameData {
 
 
     public Room getPlayerRoom() {
-        return findRoom(getPlayerRoomName());
+        try {
+            return findRoom(getPlayerRoomName());
+        }
+        catch (IllegalArgumentException e) {
+            return new Room("Nelze načíst lokaci hráče! Špatný formát JSON souboru!");
+        }
     }
 
 

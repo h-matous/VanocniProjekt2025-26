@@ -5,6 +5,7 @@ import game.GameData;
 import game.Player;
 import game.item.Item;
 
+import game.room.Room;
 import game.ui.UI;
 
 import java.util.ArrayList;
@@ -47,6 +48,17 @@ public class Prozkoumat extends Command {
         }
         toReturn.append("\n");
 
+
+        String playerLocation = UI.toLowercaseAscii(world.getPlayerRoom().getName());
+
+        //Předposlední místnost v JSONu představuje místnost, ve které lze použít právě příkaz Zkombinovat
+        Room secondToLastRoom = world.getRooms().get(world.getRooms().size() - 2);
+        String secondToLastRoomLocation = UI.toLowercaseAscii(secondToLastRoom.getName());
+
+        if (playerLocation.equals(secondToLastRoomLocation)) {
+            toReturn.append("V této místnosti bych možná mohl nějaké itemy zkombinovat...");
+            toReturn.append("\n");
+        }
 
         return toReturn.toString();
     }
