@@ -30,11 +30,21 @@ public class Zkombinovat extends Command {
                 }
             }
 
-            if (itemsNeeded.isEmpty()) return "Neexistují žádné kombinatovatelné itemy!";
+            if (itemsNeeded.isEmpty()) {
+                return "Neexistují žádné kombinatovatelné itemy!";
+            }
 
             for (int i = 0; i < itemsNeeded.size(); i++) {
+                Item currentItem = itemsNeeded.get(i);
 
+                currentItem.setLocation("");
+                currentItem.setInteractable(false);
             }
+
+            Item craftedItem = world.getItems().get(world.getItems().size() - 1);
+            craftedItem.setLocation(secondToLastRoom.getName());
+
+            return "Vyrobili jste baterii!";
         }
         return "Nenacházíte se v místnosti \"" + secondToLastRoom.getName();
     }

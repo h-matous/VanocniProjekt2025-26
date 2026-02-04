@@ -8,7 +8,7 @@ import game.ui.UI;
 import game.ui.Loader;
 import game.ui.font;
 
-//TODO: dokončit gametdata.json přidat všechny monology
+//TODO: dokončit gamedata.json přidat všechny monology
 
 public class Game {
     private UI ui;
