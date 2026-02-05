@@ -9,6 +9,7 @@ import game.ui.Loader;
 import game.ui.font;
 
 //TODO: dokončit gamedata.json přidat všechny monology
+//TODO: zprovoznit příkazy Napoveda a Pouzij
 
 public class Game {
     private UI ui;

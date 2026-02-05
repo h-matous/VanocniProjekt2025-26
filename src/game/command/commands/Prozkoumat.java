@@ -15,40 +15,53 @@ public class Prozkoumat extends Command {
     public String execute(String param, GameData world, Player player) {
         StringBuilder toReturn = new StringBuilder();
 
+        addItemsText(toReturn, world);
+
+        addCharactersText(toReturn, world);
+
+        addCombinationalItemsText(toReturn, world);
+
+
+        return toReturn.toString();
+    }
+
+    public void addItemsText(StringBuilder input, GameData world) {
         if (areAnyMovableItemsInPlayerRoom(world)) {
-            toReturn.append("Hmmm, tak v této místnosti vidím itemy: ");
-            toReturn.append(movableItemsInPlayerRoomText(world));
+            input.append("Hmmm, tak v této místnosti vidím itemy: ");
+            input.append(movableItemsInPlayerRoomText(world));
 
             if (areAnyNonMovableInteractableItemsInPlayerRoom(world)) {
-                toReturn.append("\n");
-                toReturn.append("A je tu dokonce použitelný: ");
-                toReturn.append(NonMovableInteractableItemsInPlayerRoomText(world));
-                toReturn.append("\n");
+                input.append("\n");
+                input.append("A je tu dokonce použitelný: ");
+                input.append(NonMovableInteractableItemsInPlayerRoomText(world));
+                input.append("\n");
             }
         }
         else {
-            toReturn.append("Žádné předměty v této místnosti nevidím...");
+            input.append("Žádné předměty v této místnosti nevidím...");
 
             if (areAnyNonMovableInteractableItemsInPlayerRoom(world)) {
-                toReturn.append("\n");
-                toReturn.append("Ale je zde alespoň použitelný: ");
-                toReturn.append(NonMovableInteractableItemsInPlayerRoomText(world));
-                toReturn.append("\n");
+                input.append("\n");
+                input.append("Ale je zde alespoň použitelný: ");
+                input.append(NonMovableInteractableItemsInPlayerRoomText(world));
+                input.append("\n");
             }
         }
-        toReturn.append("\n");
+        input.append("\n");
+    }
 
-
+    public void addCharactersText(StringBuilder input, GameData world) {
         if (areAnyCharactersInPlayerRoom(world)) {
-            toReturn.append("Jsou zde postavy s kterými bych si mohl promluvit: ");
-            toReturn.append(charactersInPlayerRoomText(world));
+            input.append("Jsou zde postavy s kterými bych si mohl promluvit: ");
+            input.append(charactersInPlayerRoomText(world));
         }
         else {
-            toReturn.append("Nejsou tady žádné postavy s kterými bych si mohl promluvit.");
+            input.append("Nejsou tady žádné postavy s kterými bych si mohl promluvit.");
         }
-        toReturn.append("\n");
+        input.append("\n");
+    }
 
-
+    public void addCombinationalItemsText(StringBuilder input, GameData world) {
         String playerLocation = UI.toLowercaseAscii(world.getPlayerRoom().getName());
 
         //Předposlední místnost v JSONu představuje místnost, ve které lze použít právě příkaz Zkombinovat
@@ -56,17 +69,18 @@ public class Prozkoumat extends Command {
         String secondToLastRoomLocation = UI.toLowercaseAscii(secondToLastRoom.getName());
 
         if (playerLocation.equals(secondToLastRoomLocation)) {
-            toReturn.append("V této místnosti bych možná mohl nějaké itemy zkombinovat...");
-            toReturn.append("\n");
+            input.append("V této místnosti bych možná mohl nějaké itemy zkombinovat...");
+            input.append("\n");
         }
-
-        return toReturn.toString();
     }
+
 
     @Override
     public boolean exit() {
         return false;
     }
+
+
 
     private String getStringOfItemsText(ArrayList<Item> items) {
         StringBuilder toReturn = new StringBuilder();

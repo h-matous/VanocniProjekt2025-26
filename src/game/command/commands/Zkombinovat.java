@@ -31,7 +31,7 @@ public class Zkombinovat extends Command {
             }
 
             if (itemsNeeded.isEmpty()) {
-                return "Neexistují žádné kombinatovatelné itemy!";
+                return "Neexistují žádné kombinovatelné itemy!";
             }
 
             for (int i = 0; i < itemsNeeded.size(); i++) {
@@ -41,12 +41,13 @@ public class Zkombinovat extends Command {
                 currentItem.setInteractable(false);
             }
 
+            //Podle JSON struktury je poslední Item právě craftable
             Item craftedItem = world.getItems().get(world.getItems().size() - 1);
             craftedItem.setLocation(secondToLastRoom.getName());
 
-            return "Vyrobili jste baterii!";
+            return "Vyrobili jste item: " + craftedItem.getName();
         }
-        return "Nenacházíte se v místnosti \"" + secondToLastRoom.getName();
+        return "Nenacházíte se v místnosti \"" + secondToLastRoom.getName() + "\"!";
     }
 
     @Override

@@ -34,7 +34,6 @@ public class GameData {
 
         throw new IllegalArgumentException("Neexistuje lokace s názvem: \"" + roomName + "\"");
     }
-    //TODO: vylepšit, přidat metodu jestli jsou 2 místnosti vedle sebe a pak použít v commands.Jdi u metody execute
 
 
     public Character findCharacter(String characterName) {
