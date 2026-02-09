@@ -30,7 +30,7 @@ public class GameData {
     public GameData() {}
 
     public void playFinalGuessingMinigame() {
-        
+
     }
 
 
@@ -43,6 +43,8 @@ public class GameData {
         if (rooms.size() < 2) throw new RuntimeException("Nelze progresovat ve hře, nedostatek Místností. Chybný JSON!");
 
         Item firstItemFromJSON = items.getFirst();
+        //V tomto typu hry tato podmínka nebude muset být použita, protože Pojistka už je na mapě od začátku a není nutno ji spawnovat později, protože není kombinovatelná
+        if (firstItemFromJSON.getLocation().isEmpty()) return false;
         Room firstItemLocation = findRoom(firstItemFromJSON.getLocation());
         Room secondRoomFromJSON = rooms.get(1);
 
@@ -59,6 +61,8 @@ public class GameData {
         if (rooms.size() < 2) throw new RuntimeException("Nelze progresovat ve hře, nedostatek Místností. Chybný JSON!");
 
         Item lastItemFromJSON = items.getLast();
+        //Jestli je název lokace Baterie "", znamená, že ji ještě hráč nevyrobil v laboratoři, ""/isEmpty() znamená tedy, že ještě nebyla spawnutá do mapy, takže tato progresová fáze není hotova
+        if (lastItemFromJSON.getLocation().isEmpty()) return false;
         Room lastItemLocation = findRoom(lastItemFromJSON.getLocation());
         Room lastRoomFromJSON = rooms.getLast();
 

@@ -53,6 +53,6 @@ public class Pouzij extends Command {
 
     @Override
     public boolean exit() {
-        return false;
+        return exit;
     }
 }

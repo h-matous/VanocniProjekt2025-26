@@ -28,7 +28,7 @@
   "playerRoomName": "Kokpit",
 
   "endingPhasesRequirementMessages": [
-    "Kvůli přetížení energetického systému stará pojistka v Chodbě roztříštila na jen střepy.\nMusí být Pojistka umíštěna v Chodbě, aby se nastartovaly alespoň nouzový příjem elektrické energie ze solárních panelů a nouzové energetické systémy.",
+    "Kvůli přetížení energetického systému se stará pojistka v Chodbě roztříštila na střepy.\nMusí být Pojistka umíštěna v Chodbě, aby se nastartovaly alespoň nouzový příjem elektrické energie ze solárních panelů a nouzové energetické systémy.\nBez alespoň trošky elektřiny nemůžu používat laboratorní vybavení a Panel v Komunikaci nepoužiju už vůbec ne...",
     "Sice jsou nouzové energetické systémy nyní už nastartované z nouzového příjmu elektrické energie z externích solárních panelů.\nBohužel to nestačí k zprovoznění komunikačního panelu a vysílání venkovních antén z Komunikace..."
   ],
 
