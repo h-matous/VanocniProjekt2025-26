@@ -8,7 +8,7 @@ import game.Player;
 public class Napoveda extends Command {
     @Override
     public String execute(String param, GameData world, Player player) {
-        return "Musíš vyhrát - nápověda";
+        return world.getHint();
     }
 
     @Override

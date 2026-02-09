@@ -11,23 +11,17 @@ public class Vezmi extends Command {
     @Override
     public String execute(String param, GameData world, Player player) {
         if (player.getInventory() == null) {
-            String itemName = param.split(" ")[0].trim();
 
             Item itemToPickUp;
+            Room itemLocation;
             try {
-                itemToPickUp = world.findItem(itemName);
+                itemToPickUp = world.getItemFromParam(param);
+                itemLocation = world.getItemLocationFromItem(itemToPickUp);
             }
             catch (IllegalArgumentException e) {
                 return e.getMessage();
             }
 
-            Room itemLocation;
-            try {
-                itemLocation = world.findRoom(itemToPickUp.getLocation());
-            }
-            catch (IllegalArgumentException e) {
-                return e.getMessage();
-            }
 
             if (world.getPlayerRoom().equals(itemLocation)) {
                 if (itemToPickUp.isMovable()) {

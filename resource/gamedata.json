@@ -1,8 +1,8 @@
 {
   "items": [
     {"name": "Pojistka", "location":  "Sklad", "movable": true, "interactable":  false, "combinable":  false},
-    {"name": "Nářadí", "location":  "Kokpit", "movable": true, "interactable":  true, "combinable":  false},
     {"name": "Panel", "location":  "Komunikace", "movable": false, "interactable":  true, "combinable":  false},
+    {"name": "Nářadí", "location":  "Kokpit", "movable": true, "interactable":  false, "combinable":  true},
     {"name": "Lithium", "location":  "Strojovna", "movable": true, "interactable":  false, "combinable":  true},
     {"name": "Měď", "location":  "Kajuta", "movable": true, "interactable":  false, "combinable":  true},
     {"name": "Hliník", "location":  "Ošetřovna", "movable": true, "interactable":  false, "combinable":  true},
@@ -25,5 +25,16 @@
     {"name": "Strojovna", "availableRoomNames": ["Sklad", "Laboratoř"]}
   ],
 
-  "playerRoomName": "Kokpit"
+  "playerRoomName": "Kokpit",
+
+  "endingPhasesRequirementMessages": [
+    "Kvůli přetížení energetického systému stará pojistka v Chodbě roztříštila na jen střepy.\nMusí být Pojistka umíštěna v Chodbě, aby se nastartovaly alespoň nouzový příjem elektrické energie ze solárních panelů a nouzové energetické systémy.",
+    "Sice jsou nouzové energetické systémy nyní už nastartované z nouzového příjmu elektrické energie z externích solárních panelů.\nBohužel to nestačí k zprovoznění komunikačního panelu a vysílání venkovních antén z Komunikace..."
+  ],
+
+  "endingPhaseGuessingMinigameMessage": "Zkus naladit správnou frekvenci [Hz], aby jsi zahájil komunikaci se Zemí...\nUhádní číslo: ",
+
+  "endingStory": "Ty jsi ten hráč?\nTen, kterému se podařilo zachránit posádku a dokončit misi v návratu zpět na Zemi s mimozemským tvorem?\nDíky tobě věda postoupí dál a budoucnost se akorát může rozvíjet.\nBylo to hodně úsilí a byla potřeba pořádná kuráž.\nTy spolu s Orionem, R5 a Xelem jste se dostali na Zemi.\nMusel jsi vyřešit malfunkci energetického systému, vyrobit novou baterii na pohon vesmírné lodi a navázat spojení komunikace se Zemí.\nJsi opravdový hrdina! <3",
+
+  "hint": "V lodi se roztavila a roztříštila na střepy Pojistka v Chodbě, takže ji musíš nahradit novou pojistkou, která se nachází ve Skladu. Poté musíš vyrobit z materiálů různě po lodi novou baterii a umístit ji do Strojovny. Pak už jen zahájit spojení se Zemí přes Použítí Panelu v Komunikaci."
 }

@@ -8,8 +8,10 @@ import game.ui.UI;
 import game.ui.Loader;
 import game.ui.font;
 
+import game.command.finalGuessingMinigame;
+
+
 //TODO: dokončit gamedata.json přidat všechny monology
-//TODO: zprovoznit příkazy Napoveda a Pouzij
 
 public class Game {
     private UI ui;
@@ -18,6 +20,8 @@ public class Game {
     private CommandHandler cmdHandler;
 
     private GameData world;
+
+    private finalGuessingMinigame finalGuessingMinigame;
 
 
     private final String gameDataResourcePath;
@@ -29,10 +33,14 @@ public class Game {
 
         this.cmdHandler = new CommandHandler();
 
-        gameDataResourcePath = "resource/gamedata.json";
+
+        this.finalGuessingMinigame = new finalGuessingMinigame(world, ui);
+
+
+        this.gameDataResourcePath = "resource/gamedata.json";
 
         try {
-            world = Loader.loadGameData(gameDataResourcePath);
+            this.world = Loader.loadGameData(gameDataResourcePath);
         }
         catch (Exception e) {
             ui.println(e.getMessage());

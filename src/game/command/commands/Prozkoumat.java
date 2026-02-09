@@ -82,20 +82,6 @@ public class Prozkoumat extends Command {
 
 
 
-    private String getStringOfItemsText(ArrayList<Item> items) {
-        StringBuilder toReturn = new StringBuilder();
-
-        for (int i = 0; i < items.size(); i++) {
-            toReturn.append(items.get(i).getName());
-
-            if (i < items.size() - 1) {
-                toReturn.append(", ");
-            }
-        }
-
-        return toReturn.toString();
-    }
-
 
     private ArrayList<Item> NonMovableInteractableItemsInPlayerRoom(GameData world) {
         ArrayList<Item> toReturn = new ArrayList<>();
@@ -124,7 +110,7 @@ public class Prozkoumat extends Command {
     }
 
     private String NonMovableInteractableItemsInPlayerRoomText(GameData world) {
-        return getStringOfItemsText(NonMovableInteractableItemsInPlayerRoom(world));
+        return world.getStringOfItemsText(NonMovableInteractableItemsInPlayerRoom(world));
     }
 
 
@@ -157,7 +143,7 @@ public class Prozkoumat extends Command {
 
     private String movableItemsInPlayerRoomText(GameData world) {
         //Jen pro movité
-        return getStringOfItemsText(movableItemsInPlayerRoom(world));
+        return world.getStringOfItemsText(movableItemsInPlayerRoom(world));
     }
 
 
