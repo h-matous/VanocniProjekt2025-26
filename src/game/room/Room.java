@@ -17,6 +17,11 @@ public class Room {
         this.name = name;
     }
 
+    public Room(String name, ArrayList<String> availableRoomNames) {
+        this.name = name;
+        this.availableRoomNames = availableRoomNames;
+    }
+
     public String getName() {
         return name;
     }

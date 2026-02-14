@@ -11,8 +11,16 @@ import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-
+/**
+ * Třída Loader má na starost načíst Herní svět z JSON souboru
+ */
 public class Loader {
+    /**
+     * Načte herní data z JSON souboru
+     * @param resourcePath cesta k JSON resource souboru
+     * @return vrací instanci objektu s načtenými daty
+     * @throws Exception vyhazuje vyjímku např. pokud soubor neexistuje
+     */
     public static GameData loadGameData(String resourcePath) throws Exception {
         ObjectMapper parser = new ObjectMapper();
 

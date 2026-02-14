@@ -10,8 +10,8 @@
   ],
   "characters": [
     {"name":  "Orion", "location":  "Kokpit", "monologue": ["Ale NEE... Porouchala se nám naše loď.", "Musíš to za mě opravit! Já nejsem tak schopný jako ty..."]},
-    {"name":  "Xel", "location":  "Kajuta", "monologue": ["Ahoj, já jsem Xel, máš problém s tím, že vypadl proud?\nNejspíš se přetížil energetický systém, protože jsem si všiml, že je v Hlavní chodbě chybí pojistka, přetížila se na tolik, že vybouchla na střepy.\nToho jsem si všiml jen díky své superschopnosti vidět přes zdi.\nTaky jestli ji potřebuješ nahradit všiml jsem si, že ve skladu se nachází náhrada této pojistky."]},
-    {"name":  "R5", "location":  "Hangár", "monologue": ["...", "bla bla bla", "Regulární výrazy jsou dobrý"]}
+    {"name":  "Xel", "location":  "Kajuta", "monologue": ["Ahoj, já jsem Xel, máš problém s tím, že vypadl proud?\nNejspíš se přetížil energetický systém, protože jsem si všiml, že je v Hlavní chodbě chybí pojistka, přetížila se na tolik, že vybouchla na střepy.\nToho jsem si všiml jen díky své superschopnosti vidět přes zdi.\nTaky jestli ji potřebuješ nahradit všiml jsem si, že ve skladu se nachází náhrada této pojistky.", "Tak, už se ti podařil vyřešit novou pojistkou energetický systém, dobrá práce! Ale i tak vypadá, že loď není v úplném provozu..."]},
+    {"name":  "R5", "location":  "Hangár", "monologue": ["...", "Uff...\nKonečně mohu mluvit, nouzové energetické systémy jsou zpět a už mám přístup k energii alespoň z externích solárních panelů, loď ale nefunguje celá..."]}
   ],
   "rooms": [
     {"name": "Kokpit", "availableRoomNames": ["Chodba"]},
@@ -32,9 +32,11 @@
     "Sice jsou nouzové energetické systémy nyní už nastartované z nouzového příjmu elektrické energie z externích solárních panelů.\nBohužel to nestačí k zprovoznění komunikačního panelu a vysílání venkovních antén z Komunikace..."
   ],
 
-  "endingPhaseGuessingMinigameMessage": "Zkus naladit správnou frekvenci [Hz], aby jsi zahájil komunikaci se Zemí...\nUhádní číslo: ",
+  "endingPhaseGuessingMinigameMessage": "Zkus naladit správnou frekvenci [kHz], aby jsi zahájil komunikaci se Zemí...\nUhádní číslo: ",
 
   "endingStory": "Ty jsi ten hráč?\nTen, kterému se podařilo zachránit posádku a dokončit misi v návratu zpět na Zemi s mimozemským tvorem?\nDíky tobě věda postoupí dál a budoucnost se akorát může rozvíjet.\nBylo to hodně úsilí a byla potřeba pořádná kuráž.\nTy spolu s Orionem, R5 a Xelem jste se dostali na Zemi.\nMusel jsi vyřešit malfunkci energetického systému, vyrobit novou baterii na pohon vesmírné lodi a navázat spojení komunikace se Zemí.\nJsi opravdový hrdina! <3",
 
-  "hint": "V lodi se roztavila a roztříštila na střepy Pojistka v Chodbě, takže ji musíš nahradit novou pojistkou, která se nachází ve Skladu. Poté musíš vyrobit z materiálů různě po lodi novou baterii a umístit ji do Strojovny. Pak už jen zahájit spojení se Zemí přes Použítí Panelu v Komunikaci."
+  "hint": "V lodi se roztavila a roztříštila na střepy Pojistka v Chodbě, takže ji musíš nahradit novou pojistkou, která se nachází ve Skladu. Poté musíš vyrobit z materiálů různě po lodi novou baterii a umístit ji do Strojovny. Pak už jen zahájit spojení se Zemí přes Použítí Panelu v Komunikaci.",
+
+  "playFinalGuessingMinigame": false
 }

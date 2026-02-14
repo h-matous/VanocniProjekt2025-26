@@ -6,6 +6,7 @@ import game.Player;
 
 import game.item.Item;
 import game.room.Room;
+import game.ui.font;
 
 
 public class Pouzij extends Command {
@@ -25,22 +26,25 @@ public class Pouzij extends Command {
 
             //Jestli item není použitelný
             if (!itemToUse.isInteractable()) {
-                return "Tento item nelze použít...";
+                return "Tento předmět nelze použít...";
             }
 
             itemLocation = world.getItemLocationFromItem(itemToUse);
 
             //Jestli je hráč není ve stejné místnosti jako je použitelný item
             if (!world.getPlayerRoom().equals(itemLocation)) {
-                return "Item nelze použít, hráč se nenachází ve stejné místnosti jako item...";
+                return "Předmět nelze použít, hráč se nenachází ve stejné místnosti jako předmět...";
             }
         }
         catch (IllegalArgumentException e) {
             return e.getMessage();
         }
 
+        //Check jestli je alespoň pojistka na svým místě (1. progresová fáze)
+        if (!world.isFirstProgressingPhaseDone()) return "Nelze použít..." + "\n" + "Není dokončen první požadavek!" + "\n" + font.magenta() + world.getEndingPhasesRequirementMessages().get(0) + font.reset();
+
         //Check jestli je na konci hry, jestli je baterka na svým místě (2. progresová fáze)
-        if (!world.isSecondProgressingPhaseDone()) return "Nelze použít... Není dokončen druhý požadavek!" + "\n" +world.getEndingPhasesRequirementMessages().get(1);
+        if (!world.isSecondProgressingPhaseDone()) return "Nelze použít..." + "\n" + "Není dokončen druhý požadavek!" + "\n" + font.magenta() + world.getEndingPhasesRequirementMessages().get(1) + font.reset();
 
         //Zavolání metody na guessing minihru
         world.playFinalGuessingMinigame();

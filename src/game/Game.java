@@ -1,6 +1,5 @@
 package game;
 
-
 import game.command.CommandHandler;
 import game.ui.ConsoleUI;
 import game.ui.UI;
@@ -21,7 +20,7 @@ public class Game {
 
     private GameData world;
 
-    private finalGuessingMinigame finalGuessingMinigame;
+    private finalGuessingMinigame finalMinigame;
 
 
     private final String gameDataResourcePath;
@@ -31,12 +30,6 @@ public class Game {
         this.ui = new ConsoleUI();
         this.player = new Player();
 
-        this.cmdHandler = new CommandHandler();
-
-
-        this.finalGuessingMinigame = new finalGuessingMinigame(world, ui);
-
-
         this.gameDataResourcePath = "resource/gamedata.json";
 
         try {
@@ -45,6 +38,10 @@ public class Game {
         catch (Exception e) {
             ui.println(e.getMessage());
         }
+
+
+        this.finalMinigame = new finalGuessingMinigame(world, ui);
+        this.cmdHandler = new CommandHandler(finalMinigame);
     }
 
 
@@ -58,7 +55,7 @@ public class Game {
                 ui.println("Můžete se posunout do místností: " + world.getPlayerRoom().availableRoomNamesText());
 
                 if (player.getInventory() != null) {
-                    ui.println("V inventáři máte item: " + player.getInventory().getName());
+                    ui.println("V inventáři máte item: " + font.yellow() + player.getInventory().getName() + font.reset());
                 }
 
 
@@ -77,10 +74,10 @@ public class Game {
 
     private void uvod() {
         if (!world.getCharacters().isEmpty()) {
-            //Postava na nulté pozici v ArrayListu se úvodně "seznámí" s hráčem jako první a použije se jeden z jejich monologů jako právě začáteční k uvedení hráče do děje a tím se hned i použije a progresuje se na další, použije se jen pokud jsou alespoň 2 monology u této postavy, protože pak by s touto postavou hráč nemohl mluvit znovu.
-            if (world.getCharacters().get(0).getMonologue().size() > 1) {
-                ui.println(cmdHandler.fetchDecodeExecuteCommand("Mluv " + world.getCharacters().get(0).getName(), world, player));
-                world.getCharacters().get(0).progressMonologue();
+            //Postava na první pozici v ArrayListu (podle JSON struktury) se úvodně "seznámí" s hráčem jako první a použije se jeden z jejich monologů jako právě začáteční k uvedení hráče do děje a tím se hned i použije a progresuje se na další, použije se jen pokud jsou alespoň 2 monology u této postavy, protože pak by s touto postavou hráč nemohl mluvit znovu.
+            if (world.getCharacters().getFirst().getMonologue().size() > 1) {
+                ui.println(cmdHandler.fetchDecodeExecuteCommand("Mluv " + world.getCharacters().getFirst().getName(), world, player));
+                world.getCharacters().getFirst().progressMonologue();
                 ui.println("\n");
             }
         }

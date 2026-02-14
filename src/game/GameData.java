@@ -7,34 +7,51 @@ import game.ui.UI;
 
 import java.util.ArrayList;
 
+/**
+ * Trída GameData obsahuje veškerá data o Herním světě včetně aktuální pozice Hráče
+ */
 public class GameData {
-    //items/objects, characters, locations/rooms, quests
+    //items/objects, characters, locations/rooms, quests?
     private ArrayList<Item> items;
     private ArrayList<Character> characters;
     private ArrayList<Room> rooms;
 
+    //Název místnosti ve které se právě Hráč nachází
     private String playerRoomName;
 
+    //Zprávy požadavků progresových fází
     private ArrayList<String> endingPhasesRequirementMessages;
 
+    //Zpráva k hádací minihře
     private String endingPhaseGuessingMinigameMessage;
 
+    //Příběh k výhře
     private String endingStory;
 
     //Nápověda
     private String hint;
 
+    //Jestli má spustit minihru
+    private boolean playFinalGuessingMinigame;
+
     /**
-     * Empty constructor for loading GameData with jackson
+     * Prázdný konstruktor pro načítání Herního světa GameData s jackson
      */
     public GameData() {}
 
+    /**
+     * Spouštění finální hádací minihry, kterou následuje konec a výhra hry
+     */
     public void playFinalGuessingMinigame() {
-
+        playFinalGuessingMinigame = true;
     }
 
 
-    //Slouží k zjištění zdali hráč podle příběhu hry dokončil první úkol, díky kterému může postupovat ve hře a může vykonat další úkol
+
+    /**
+     * Slouží k zjištění zdali hráč podle příběhu hry dokončil první úkol, díky kterému může postupovat ve hře a může vykonat další úkol
+     * @return vrací boolean jestli tuto progresovou fázi Hráč dokončil
+     */
     public boolean isFirstProgressingPhaseDone() {
         //Podle navržení JSONu, je vyžadováno, aby byl 1. Item (Pojistka) umíštěn v 2. Lokaci/Místnosti (Chodba).
         //Navrženo podle systému indexování v ArrayListu, aby bylo možné upravovat příběh a určité Itemy se musely umístit do určitých místností podle gameDesignu.
@@ -52,7 +69,10 @@ public class GameData {
         return firstItemLocation.equals(secondRoomFromJSON);
     }
 
-    //Slouží k zjištění zdali hráč podle příběhu hry dokončil druhý úkol, díky kterému může poté navázat na poslední úkol
+    /**
+     * Slouží k zjištění zdali hráč podle příběhu hry dokončil druhý úkol, díky kterému může poté navázat na poslední úkol
+     * @return vrací boolean jestli tuto progresovou fázi Hráč dokončil
+     */
     public boolean isSecondProgressingPhaseDone() {
         //Podle navržení JSONu, je vyžadováno, aby byl poslední Item (Baterie) umíštěn v 2. Lokaci/Místnosti (Strojovna).
         //Navrženo podle systému indexování v ArrayListu, aby bylo možné upravovat příběh a určité Itemy se musely umístit do určitých místností podle gameDesignu.
@@ -71,6 +91,11 @@ public class GameData {
     }
 
 
+    /**
+     * Slouží k získání textového řetězce, který obsahuje výčet Itemů z ArrayListu
+     * @param items ArrayList všech Itemů k výčtu
+     * @return vrací String výčtu těchto Itemů
+     */
     public String getStringOfItemsText(ArrayList<Item> items) {
         StringBuilder toReturn = new StringBuilder();
 
@@ -86,9 +111,9 @@ public class GameData {
     }
 
     /**
-     * Finds a specific room by its name.
-     * @param roomName the name of the room to be found
-     * @return the matching room
+     * Najde specifickou Místnost podle její jména
+     * @param roomName název Místnosti k nalezení
+     * @return shodující Místnost
      */
     public Room findRoom(String roomName) {
         for (Room room : rooms) {
@@ -100,17 +125,33 @@ public class GameData {
         throw new IllegalArgumentException("Neexistuje lokace s názvem: \"" + roomName + "\"!");
     }
 
+
+    /**
+     * Získá Item z parametru příkazu, používáno u Commandů Vezmi a Pouzij
+     * @param param parametr příkazu
+     * @return shodující Item
+     */
     public Item getItemFromParam(String param) {
         String itemName = param.split(" ")[0].trim();
 
         return findItem(itemName);
     }
 
+    /**
+     * Najde Místnost ve které se nachází určitý Item
+     * @param item Item k získání Místnosti
+     * @return Místnost ve které se nachází Item
+     */
     public Room getItemLocationFromItem(Item item) {
         return findRoom(item.getLocation());
     }
 
 
+    /**
+     * Najde postavu podle jejího jména
+     * @param characterName jméno postavy
+     * @return Postavu Character se shodujícím jménem
+     */
     public Character findCharacter(String characterName) {
         for (Character character : characters) {
             if (UI.toLowercaseAscii(character.getName()).equals(UI.toLowercaseAscii(characterName))) {
@@ -122,6 +163,11 @@ public class GameData {
     }
 
 
+    /**
+     * Najde specifický Item podle jeho názvu
+     * @param itemName název hledaného Itemu
+     * @return Item se shodujícím názvem
+     */
     public Item findItem(String itemName) {
         for (Item item : items) {
             if (UI.toLowercaseAscii(item.getName()).equals(UI.toLowercaseAscii(itemName))) {
@@ -133,23 +179,37 @@ public class GameData {
     }
 
 
-
+    /**
+     * Nastaví hráčovu Místnost, kde se právě nachází
+     * @param playerRoom hráčova Místnost
+     */
     public void setPlayerRoom(Room playerRoom) {
         this.playerRoomName = playerRoom.getName();
     }
 
 
+    /**
+     * Zjistí jestli se nachází Hráč vedle určité Místnosti
+     * @param room Místnost k vedle které se potencionálně nachází Hráč
+     * @return vrací boolean jestli se vedle Místnosti nachází
+     */
     public boolean playerNextToRoom(Room room) {
         return getPlayerRoom().isNextToRoom(room);
     }
 
+    /**
+     * Zjistí jestli se nachází Hráč ve stejné Místnosti jako postava Character
+     * @param character postava ke které chce hráč mluvit
+     * @return vrací boolean jestli je Hráč ve stané místnosti jako postava
+     */
     public boolean playerInTheRoomAsCharacter(Character character) {
         return getPlayerRoom().equals(findRoom(character.getLocation()));
     }
 
-
-
-
+    /**
+     * Slouží k získání Hráčovy Místnosti, kde se nachází
+     * @return vrací Místnost ve které se Hráč nachází
+     */
     public Room getPlayerRoom() {
         try {
             return findRoom(getPlayerRoomName());
@@ -160,66 +220,149 @@ public class GameData {
     }
 
 
+    /**
+     * Slouží k získání všech Itemů v Herním světě
+     * @return vrací ArrayList všech Itemů
+     */
     public ArrayList<Item> getItems() {
         return items;
     }
 
+    /**
+     * Nastaví Hráčovu Místnost, kde se právě nachází
+     * @param playerRoomName název konkrétní Místnosti
+     */
     public void setPlayerRoomName(String playerRoomName) {
         this.playerRoomName = playerRoomName;
     }
+
+    /**
+     * Získá název Místnosti ve které se Hráč zrovna nachází
+     * @return vrací název konkrétní místnosti
+     */
     public String getPlayerRoomName() {
         return playerRoomName;
     }
 
+
+    /**
+     * Slouží k nastavení Itemů v Herním světě na konkrétní ArrayList všech Itemů
+     * @param items ArrayList Itemů, které se nastaví
+     */
     public void setItems(ArrayList<Item> items) {
         this.items = items;
     }
 
+    /**
+     * Slouží k získání všech postav v Herním světě
+     * @return vrací ArrayList všech těchto postav
+     */
     public ArrayList<Character> getCharacters() {
         return characters;
     }
 
+    /**
+     * Slouží k nastavení postav v Herním světě na konkrétní ArrayList všech postav
+     * @param characters ArrayList postav, které se nastaví
+     */
     public void setCharacters(ArrayList<Character> characters) {
         this.characters = characters;
     }
 
+
+    /**
+     * Slouží k získání všech Místností v Herním světě
+     * @return vrací ArrayList Místností
+     */
     public ArrayList<Room> getRooms() {
         return rooms;
     }
 
+    /**
+     * Slouží k nastavení Místností v Herním světě na konkrétní ArrayList všech Místností
+     * @param rooms ArrayList Místností, které se nastaví
+     */
     public void setRooms(ArrayList<Room> rooms) {
         this.rooms = rooms;
     }
 
+    /**
+     * Slouží k získání zpráv požadavků, které je nutné dokončit pro dokončení hry
+     * @return vrací ArrayList textových řetěžců, který obsahuje tyto zprávy
+     */
     public ArrayList<String> getEndingPhasesRequirementMessages() {
         return endingPhasesRequirementMessages;
     }
 
+    /**
+     * Slouží k nastavení zpráv požadavků, které je nutné dokončit pro dokončení hry
+     * @param endingPhasesRequirementMessages ArrayList Stringů těchto zpráv požadavků
+     */
     public void setEndingPhasesRequirementMessages(ArrayList<String> endingPhasesRequirementMessages) {
         this.endingPhasesRequirementMessages = endingPhasesRequirementMessages;
     }
 
+    /**
+     * Slouží k získání zprávy, která se ukáže při hádací minihře, kdy hráč hádá/hledá specifické číslo
+     * @return vrací tuto zprávu jako String
+     */
     public String getEndingPhaseGuessingMinigameMessage() {
         return endingPhaseGuessingMinigameMessage;
     }
 
+    /**
+     * Slouží k nastavení zprávy, která se ukáže při hádací minihře, kdy hráč hádá/hledá specifické číslo
+     * @param endingPhaseGuessingMinigameMessage tato zpráva jako String
+     */
     public void setEndingPhaseGuessingMinigameMessage(String endingPhaseGuessingMinigameMessage) {
         this.endingPhaseGuessingMinigameMessage = endingPhaseGuessingMinigameMessage;
     }
 
+    /**
+     * Slouží k získání příběhu po konci hry
+     * @return vrací příběh jako String
+     */
     public String getEndingStory() {
         return endingStory;
     }
 
+    /**
+     * Slouží k nastavení příběhu po konci hry
+     * @param endingStory příběh jako String
+     */
     public void setEndingStory(String endingStory) {
         this.endingStory = endingStory;
     }
 
+    /**
+     * Slouží k získání nápovědy, kterou si hráč vyžádá, když neví jak pokračovat
+     * @return vrací nápovědu jako String
+     */
     public String getHint() {
         return hint;
     }
 
+    /**
+     * Slouží k nastavení nápovědy
+     * @param hint nápověda jako String
+     */
     public void setHint(String hint) {
         this.hint = hint;
+    }
+
+    /**
+     * Slouží ke kontrole, jestli má hra spustit finální hádací minihru
+     * @return vrací boolean, jestli se má minihra spustit
+     */
+    public boolean shouldPlayFinalGuessingMinigame() {
+        return playFinalGuessingMinigame;
+    }
+
+    /**
+     * Slouží k nastavení, jestli má hra spustit finální hádací minihru
+     * @param playFinalGuessingMinigame boolean jestli se má minihra spustit
+     */
+    public void setPlayFinalGuessingMinigame(boolean playFinalGuessingMinigame) {
+        this.playFinalGuessingMinigame = playFinalGuessingMinigame;
     }
 }

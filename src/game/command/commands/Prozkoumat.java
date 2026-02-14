@@ -7,6 +7,7 @@ import game.item.Item;
 
 import game.room.Room;
 import game.ui.UI;
+import game.ui.font;
 
 import java.util.ArrayList;
 
@@ -32,7 +33,9 @@ public class Prozkoumat extends Command {
 
             if (areAnyNonMovableInteractableItemsInPlayerRoom(world)) {
                 input.append("\n");
+                input.append(font.orange());
                 input.append("A je tu dokonce použitelný: ");
+                input.append(font.reset());
                 input.append(NonMovableInteractableItemsInPlayerRoomText(world));
                 input.append("\n");
             }
@@ -42,7 +45,9 @@ public class Prozkoumat extends Command {
 
             if (areAnyNonMovableInteractableItemsInPlayerRoom(world)) {
                 input.append("\n");
+                input.append(font.orange());
                 input.append("Ale je zde alespoň použitelný: ");
+                input.append(font.reset());
                 input.append(NonMovableInteractableItemsInPlayerRoomText(world));
                 input.append("\n");
             }
@@ -69,7 +74,9 @@ public class Prozkoumat extends Command {
         String secondToLastRoomLocation = UI.toLowercaseAscii(secondToLastRoom.getName());
 
         if (playerLocation.equals(secondToLastRoomLocation)) {
+            input.append(font.orange());
             input.append("V této místnosti bych možná mohl nějaké itemy zkombinovat...");
+            input.append(font.reset());
             input.append("\n");
         }
     }

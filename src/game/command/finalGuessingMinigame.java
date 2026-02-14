@@ -2,14 +2,15 @@ package game.command;
 
 import game.GameData;
 import game.ui.UI;
+import game.ui.font;
 
 import java.util.Random;
 
 public class finalGuessingMinigame {
 
-    private GameData world;
-    private UI ui;
-    private Random random;
+    private final GameData world;
+    private final UI ui;
+    private final Random random;
 
     public finalGuessingMinigame(GameData world, UI ui) {
         this.world = world;
@@ -19,7 +20,8 @@ public class finalGuessingMinigame {
     }
 
     public void play() {
-        int cislo = random.nextInt(10000, 100000);
+        //X-band (8-12 GHz)
+        int cislo = random.nextInt(8000000, 12000000); //kHz
 
         while (!ui.getLastString().equals(String.valueOf(cislo))) {
             ui.println(world.getEndingPhaseGuessingMinigameMessage());
@@ -30,5 +32,7 @@ public class finalGuessingMinigame {
             if (hracovoCislo < cislo) ui.println("Hádané číslo je větší!");
             if (hracovoCislo > cislo) ui.println("Hádané číslo je menší!");
         }
+
+        ui.println(font.cyan() + font.bold() + "Správně jste uhodli číslo: " + cislo + "!" + font.reset());
     }
 }
