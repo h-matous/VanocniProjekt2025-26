@@ -1,9 +1,9 @@
 import game.Game;
 
 /**
- * <b>Únik z vesmíru</b>,
+ * <b>Únik z vesmíru</b>
  * <br>
- * krátká hra o pilotovi Adamovi,
+ * Krátká hra o pilotovi Adamovi,
  * <br>
  * který při jeho vesmírné misi
  * <br>
@@ -15,9 +15,9 @@ import game.Game;
  * <br>
  * co neví je, že se také vybije a poškodí
  * <br>
- * hlavní baterie pohonu.
+ * hlavní baterie na pohon kosmické lodi.
  * <br><br>
- * Spolu s jeho posádku musí tento problém
+ * Spolu s jeho posádkou musí tento problém
  * <br>
  * vyřešit a dostat se zpět na Zemi.
  * @author Matouš Hruška, C2b

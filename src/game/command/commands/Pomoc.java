@@ -10,12 +10,12 @@ public class Pomoc extends Command {
     @Override
     public String execute(String param, GameData world, Player player) {
         return "K dispozici jsou příkazy:\n" +
-                "jdi <místnosti>            : pohyb mezi propojenými místnostmi\n" +
+                "jdi <místnost>             : pohyb mezi propojenými místnostmi\n" +
                 "konec                      : ukončení hry\n" +
                 "pomoc                      : zobrazení dostupných příkazů\n" +
                 "napoveda                   : nápověda pro postup ve hře\n" +
                 "vezmi <předmět>            : vzít konkrétní předmět z místnosti\n" +
-                "poloz                      : položit předmět v inventáři\n" +
+                "poloz                      : položit předmět z inventáře\n" +
                 "pouzij <předmět>           : použít předmět v místnosti\n" +
                 "mluv <postava>             : mluvit s konkrétní postavou\n" +
                 "prozkoumat                 : zjištění informací o místnosti\n" +

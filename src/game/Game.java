@@ -30,7 +30,7 @@ public class Game {
         this.ui = new ConsoleUI();
         this.player = new Player();
 
-        this.gameDataResourcePath = "resource/gamedata.json";
+        this.gameDataResourcePath = "gamedata.json"; //původně resource/gamedata.json, když se načítalo ze souboru
 
         try {
             this.world = Loader.loadGameData(gameDataResourcePath);

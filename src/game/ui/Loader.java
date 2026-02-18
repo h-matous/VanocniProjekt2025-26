@@ -3,7 +3,6 @@ package game.ui;
 import game.GameData;
 
 import java.io.InputStream;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -24,13 +23,17 @@ public class Loader {
     public static GameData loadGameData(String resourcePath) throws Exception {
         ObjectMapper parser = new ObjectMapper();
 
-        try {
-            InputStream input = new FileInputStream(resourcePath);
+        try (InputStream inputStream = Loader.class.getClassLoader().getResourceAsStream(resourcePath)) { //Automaticky zavře inputStream
+            //původně InputStream input = new FileInputStream(resourcePath), když se ještě načítalo z externího souboru
 
-            return parser.readValue(input, GameData.class);
+            if (inputStream == null) {
+                throw new IllegalArgumentException("Resource nebyl nalezen: " + resourcePath);
+            }
+
+            return parser.readValue(inputStream, GameData.class);
         }
         catch (FileNotFoundException e) {
-            throw new RuntimeException("Soubor k načtení světa \"resource/gamedata.json\" nebyl nalezen! Nelze spustit hru!" + "\n" + e.getMessage());
+            throw new RuntimeException("Soubor k načtení světa \"" + resourcePath + "\" nebyl nalezen! Nelze spustit hru!" + "\n" + e.getMessage());
         }
         catch (StreamReadException e) {
             throw new RuntimeException("Vyskytl se problém se zpracováním streamu k načtení herního světa! Nelze spustit hru!" + "\n" + e.getMessage());
