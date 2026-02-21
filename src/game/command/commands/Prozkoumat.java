@@ -28,15 +28,17 @@ public class Prozkoumat extends Command {
 
     public void addItemsText(StringBuilder input, GameData world) {
         if (areAnyMovableItemsInPlayerRoom(world)) {
+            input.append(font.yellow());
             input.append("Hmmm, tak v této místnosti vidím itemy: ");
             input.append(movableItemsInPlayerRoomText(world));
+            input.append(font.reset());
 
             if (areAnyNonMovableInteractableItemsInPlayerRoom(world)) {
                 input.append("\n");
                 input.append(font.orange());
                 input.append("A je tu dokonce použitelný: ");
-                input.append(font.reset());
                 input.append(NonMovableInteractableItemsInPlayerRoomText(world));
+                input.append(font.reset());
                 input.append("\n");
             }
         }
@@ -47,8 +49,8 @@ public class Prozkoumat extends Command {
                 input.append("\n");
                 input.append(font.orange());
                 input.append("Ale je zde alespoň použitelný: ");
-                input.append(font.reset());
                 input.append(NonMovableInteractableItemsInPlayerRoomText(world));
+                input.append(font.reset());
                 input.append("\n");
             }
         }
@@ -57,8 +59,10 @@ public class Prozkoumat extends Command {
 
     public void addCharactersText(StringBuilder input, GameData world) {
         if (areAnyCharactersInPlayerRoom(world)) {
+            input.append(font.cyan());
             input.append("Jsou zde postavy s kterými bych si mohl promluvit: ");
             input.append(charactersInPlayerRoomText(world));
+            input.append(font.reset());
         }
         else {
             input.append("Nejsou tady žádné postavy s kterými bych si mohl promluvit.");
@@ -75,18 +79,17 @@ public class Prozkoumat extends Command {
 
         if (playerLocation.equals(secondToLastRoomLocation)) {
             input.append(font.orange());
+            input.append(font.bold());
             input.append("V této místnosti bych možná mohl nějaké itemy zkombinovat...");
             input.append(font.reset());
             input.append("\n");
         }
     }
 
-
     @Override
     public boolean exit() {
         return false;
     }
-
 
 
 

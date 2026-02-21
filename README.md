@@ -16,7 +16,7 @@ Krátká textová hra o pilotovi Adamovi, který při jeho vesmírné misi zůst
 
 ## Mapa hry
 <div align="center">
-<img src="spaceshipMap.svg" alt="mapa" width=40%>
+<img src="spaceshipMap.svg" alt="mapa" width=40% >
 </div>
 
 ## Příkazy

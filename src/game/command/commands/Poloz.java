@@ -6,6 +6,7 @@ import game.Player;
 
 import game.room.Room;
 import game.item.Item;
+import game.ui.font;
 
 public class Poloz extends Command {
     @Override
@@ -23,21 +24,21 @@ public class Poloz extends Command {
                 //Jestli je první item (Pojistka) na druhé pozici (Chodba), toto celé vychází ze struktury JSONu
                 if (itemToPlace.equals(world.getItems().getFirst()) && newItemLocation.equals(world.getRooms().get(1))) {
                     itemToPlace.setMovable(false); //Item se "nainstaluje"
-
+                    player.setInventory(null); //Sebrání itemu z inventáře hráče
                     if (world.getCharacters().size() > 2) {
                         world.getCharacters().get(1).progressMonologue(); //Xel
                         world.getCharacters().get(2).progressMonologue(); //Orion
                     }
 
-                    return "Nainstalovali jste item " + itemToPlace.getName() + "!";
+                    return font.yellow() + "Nainstalovali jste item " + font.bold() + itemToPlace.getName() + font.reset() + font.yellow() + "!" + font.reset();
                 }
 
                 //Jestli je poslední item (Baterie) na poslední pozici (Strojovna), toto celé znovu vychází ze struktury JSONu
                 if (itemToPlace.equals(world.getItems().getLast()) && newItemLocation.equals(world.getRooms().getLast())) {
                     itemToPlace.setMovable(false); //Item se "nainstaluje"
-
+                    player.setInventory(null); //Sebrání itemu z inventáře hráče
                     //TODO: monolog
-                    return "Nainstalovali jste item " + itemToPlace.getName() + "!";
+                    return font.yellow() + "Nainstalovali jste item " + font.bold() + itemToPlace.getName() + font.reset() + font.yellow() + "!" + font.reset();
                 }
             }
 

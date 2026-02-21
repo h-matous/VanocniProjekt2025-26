@@ -15,6 +15,13 @@ import java.util.ArrayList;
  * Třída Zkombinovat reprezentuje Command, který umožňuje hráči zkombinovat nějaké Itemy do jiného Itemu. Tento nový Item může být klíčový k dohrání hry.
  */
 public class Zkombinovat extends Command {
+    /**
+     * Metoda execute u příkazu Zkombinovat kontroluje, jestli jsou splněné podmínky pro kombinaci a poté následné zkombinování určitých Itemů do Itemu jiného
+     * @param param String parametr, který byl uživatelem specifikován po příkazu
+     * @param world instance Herního světa
+     * @param player instance Hráče
+     * @return vrací String, který se vypíše
+     */
     @Override
     public String execute(String param, GameData world, Player player) {
         String playerLocation = UI.toLowercaseAscii(world.getPlayerRoom().getName());
@@ -30,14 +37,14 @@ public class Zkombinovat extends Command {
         String secondToLastRoomLocation = UI.toLowercaseAscii(secondToLastRoom.getName());
 
         if (!playerLocation.equals(secondToLastRoomLocation)) return "Nenacházíte se v místnosti \"" + secondToLastRoom.getName() + "\"!";
-        //Check jestli je pojistka na svým místě (1. progresová fáze)
+        //Check jestli je Pojistka na svým místě (1. progresová fáze)
         if (!world.isFirstProgressingPhaseDone()) return "Nelze použít..." + "\n" + "Není dokončen první požadavek!" + "\n" + font.magenta() + world.getEndingPhasesRequirementMessages().getFirst() + font.reset();
 
         try {
             for (int i = 0; i < itemsNeeded.size(); i++) {
                 Item currentItem = itemsNeeded.get(i);
                 if (!secondToLastRoomLocation.equals(UI.toLowercaseAscii(currentItem.getLocation()))) {
-                    return "V místnosti " + secondToLastRoom.getName() + " nejsou položené všechny itemy potřebné ke kombinaci: " + world.getStringOfItemsText(itemsNeeded) + "!";
+                    return font.magenta() + "V místnosti " + secondToLastRoom.getName() + " nejsou položené všechny itemy potřebné ke kombinaci: " + world.getStringOfItemsText(itemsNeeded) + "!" + font.reset();
                 }
             }
         }
@@ -86,6 +93,10 @@ public class Zkombinovat extends Command {
         }
     }
 
+    /**
+     * Metoda exit() zjišťuje, jestli po zavolání tohoto příkazu má hra zrovna skončit, v tomto případě nemá
+     * @return boolean jestli má hra po tomto příkazu skončit (false)
+     */
     @Override
     public boolean exit() {
         return false;

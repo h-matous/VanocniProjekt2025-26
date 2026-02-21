@@ -6,6 +6,7 @@ import game.Player;
 
 import game.item.Item;
 import game.room.Room;
+import game.ui.font;
 
 public class Vezmi extends Command {
     @Override
@@ -16,10 +17,17 @@ public class Vezmi extends Command {
             Room itemLocation;
             try {
                 itemToPickUp = world.getItemFromParam(param);
+            }
+            catch (IllegalArgumentException e) {
+                //Item s tímto názvem prostě neexistuje v JSONu
+                return e.getMessage();
+            }
+            try {
                 itemLocation = world.getItemLocationFromItem(itemToPickUp);
             }
             catch (IllegalArgumentException e) {
-                return e.getMessage();
+                //Hledaný Item se právě nenachází na mapě (např. nebyl ještě vyroben kombinací, nebo už byl instalován např. Pojistka do Chodby)
+                return "Item " + itemToPickUp.getName() + " je právě nedostupný.";
             }
 
 
@@ -27,10 +35,10 @@ public class Vezmi extends Command {
                 if (itemToPickUp.isMovable()) {
                     itemToPickUp.setLocation("");
                     player.setInventory(itemToPickUp);
-                    return "Sebrali jste item: " + itemToPickUp.getName();
+                    return font.pink() + "Sebrali jste item: " + itemToPickUp.getName() + font.reset();
                 }
 
-                return "Item \"" + itemToPickUp.getName() + "\" není movitý.";
+                return "Předmět \"" + itemToPickUp.getName() + "\" není movitý.";
             }
 
             return "Hráč se nenachází ve stejné místnosti jako item!";
