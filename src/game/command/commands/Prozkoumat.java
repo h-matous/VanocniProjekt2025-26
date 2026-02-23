@@ -98,7 +98,7 @@ public class Prozkoumat extends Command {
     public void addCombinationalItemsText(StringBuilder input, GameData world) {
         String playerLocation = UI.toLowercaseAscii(world.getPlayerRoom().getName());
 
-        if (world.getRooms().size() < 3) {
+        if (world.getRooms().size() >= 3) {
             //Předposlední místnost v JSONu představuje místnost, ve které lze použít právě příkaz Zkombinovat
             Room secondToLastRoom = world.getRooms().get(world.getRooms().size() - 2);
             String secondToLastRoomLocation = UI.toLowercaseAscii(secondToLastRoom.getName());
