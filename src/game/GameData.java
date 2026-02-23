@@ -8,7 +8,8 @@ import game.ui.UI;
 import java.util.ArrayList;
 
 /**
- * Trída GameData obsahuje veškerá data o Herním světě včetně aktuální pozice Hráče
+ * Třída GameData obsahuje veškerá data o Herním světě včetně aktuální pozice Hráče
+ * Reprezentuje herní data načtená z JSON souboru a uchovává veškerá statická data jako třeba Itemy, Postavya Místnosti
  */
 public class GameData {
     //items/objects, characters, locations/rooms, quests?
@@ -215,7 +216,7 @@ public class GameData {
             return findRoom(getPlayerRoomName());
         }
         catch (IllegalArgumentException e) {
-            return new Room("Nelze načíst lokaci hráče! Špatný formát JSON souboru!");
+            throw new IllegalArgumentException("Nelze načíst lokaci hráče! Špatný formát JSON souboru!");
         }
     }
 

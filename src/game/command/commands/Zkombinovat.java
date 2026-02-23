@@ -12,7 +12,7 @@ import game.ui.font;
 import java.util.ArrayList;
 
 /**
- * Třída Zkombinovat reprezentuje Command, který umožňuje hráči zkombinovat nějaké Itemy do jiného Itemu. Tento nový Item může být klíčový k dohrání hry.
+ * Třída Zkombinovat reprezentuje Command, který umožňuje Hráči zkombinovat nějaké Itemy do jiného Itemu. Tento nový Item může být klíčový k dohrání hry
  */
 public class Zkombinovat extends Command {
     /**
@@ -30,7 +30,8 @@ public class Zkombinovat extends Command {
         ArrayList<Item> itemsNeeded = loadCombinableItemsNeeded(world);
 
         if (itemsNeeded.isEmpty()) return "Neexistují žádné kombinovatelné itemy!";
-        if (world.getRooms().size() < 2) return "Chybný JSON! Musí obsahovat více jak 1 Item, aby se dal použít příkaz zkombinovat!";
+        if (world.getRooms().size() < 3) return "Chybný JSON! Musí obsahovat více jak 2 Místnosti, aby existovala Místnost, kde lze Itemy kombinovat!";
+        if (world.getItems().size() < 2) return "Chybný JSON! Musí obsahovat více jak 1 Item, aby se dal použít příkaz zkombinovat!";
 
         //Předposlední místnost v JSONu představuje místnost, ve které lze použít právě příkaz Zkombinovat
         Room secondToLastRoom = world.getRooms().get(world.getRooms().size() - 2);

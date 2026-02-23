@@ -18,19 +18,24 @@ public class Loader {
      * Načte herní data z JSON souboru
      * @param resourcePath cesta k JSON resource souboru
      * @return vrací instanci objektu s načtenými daty
-     * @throws Exception vyhazuje vyjímku např. pokud soubor neexistuje
      */
-    public static GameData loadGameData(String resourcePath) throws Exception {
+    public static GameData loadGameData(String resourcePath) {
+        //Vytvoření objektu pro práci s JSON souborem
         ObjectMapper parser = new ObjectMapper();
 
+        //Šlo by i třeba try (InputStream is = GameData.class.getResourceAsStream("/" + resourcePath))
+        //Načtení souboru gamedata.json, musí být ve složce "resource", která je označená jako "Resources Root" složka projektu
         try (InputStream inputStream = Loader.class.getClassLoader().getResourceAsStream(resourcePath)) { //Automaticky zavře inputStream
             //původně InputStream input = new FileInputStream(resourcePath), když se ještě načítalo z externího souboru
 
+            //Ověření, zdali soubor existuje
             if (inputStream == null) {
                 throw new IllegalArgumentException("Resource nebyl nalezen: " + resourcePath);
             }
 
+            //Přečte celý JSON soubor a vytvoří instanci GameData.class, naplní všechny vlastnosti podle názvů klíčů v JSON souboru, vrátí se hotový objekt
             return parser.readValue(inputStream, GameData.class);
+            //U GSONu by se použilo return gson.fromJson(new InputStreamReader(is, StandartCharsets.UTF_8));
         }
         catch (FileNotFoundException e) {
             throw new RuntimeException("Soubor k načtení světa \"" + resourcePath + "\" nebyl nalezen! Nelze spustit hru!" + "\n" + e.getMessage());
@@ -46,7 +51,6 @@ public class Loader {
         }
         catch (Exception e) {
             throw new RuntimeException("Nelze načíst herní svět!" + "\n" + e.getMessage());
-
         }
     }
 }

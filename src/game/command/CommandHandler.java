@@ -35,7 +35,7 @@ public class CommandHandler {
 
 
     /**
-     * Slouží k inicializaci všech příkazů Command
+     * Slouží k inicializaci všech příkazů Command a přidání do HashMapy
      */
     public void initializeCommands() {
         commandMap.put("jdi", new Jdi());

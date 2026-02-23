@@ -10,8 +10,9 @@ import game.ui.font;
 import game.command.finalGuessingMinigame;
 
 
-//TODO: dokončit gamedata.json přidat všechny monology
-
+/**
+ * Třída Game slouží k zahájení hry a inicializaci prostředí ve kterém se bude odehrávat
+ */
 public class Game {
     private UI ui;
     private Player player;
@@ -25,7 +26,9 @@ public class Game {
 
     private final String gameDataResourcePath;
 
-
+    /**
+     * Konstruktor načte veškeré herní data, inicializuje Hráče a uživatelské rozhraní
+     */
     public Game() {
         this.ui = new ConsoleUI();
         this.player = new Player();
@@ -45,6 +48,9 @@ public class Game {
     }
 
 
+    /**
+     * Metoda play() slouží k zahájení celé hry
+     */
     public void play() {
         try {
             uvod();
@@ -72,6 +78,9 @@ public class Game {
     }
 
 
+    /**
+     * Slouží k seznámení Hráče s příběhem, spustí se jen na začátku nové hry
+     */
     private void uvod() {
         if (!world.getCharacters().isEmpty()) {
             //Postava na první pozici v ArrayListu (podle JSON struktury) se úvodně "seznámí" s hráčem jako první a použije se jeden z jejich monologů jako právě začáteční k uvedení hráče do děje a tím se hned i použije a progresuje se na další, použije se jen pokud jsou alespoň 2 monology u této postavy, protože pak by s touto postavou hráč nemohl mluvit znovu.

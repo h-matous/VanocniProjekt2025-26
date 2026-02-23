@@ -4,7 +4,7 @@ import game.GameData;
 import game.Player;
 
 /**
- * Abstraktní třída Command představuje „template“ jak mají třídy všech odděděných příkazů vypadat
+ * Abstraktní třída Command představuje „template“ jak mají třídy všech odděděných příkazů vypadat (mají obsahovat metody execute() a exit())
  */
 public abstract class Command {
     protected String command;

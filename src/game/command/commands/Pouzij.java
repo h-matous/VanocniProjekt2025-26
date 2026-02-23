@@ -8,14 +8,27 @@ import game.item.Item;
 import game.room.Room;
 import game.ui.font;
 
-
+/**
+ * Třída Pouzij reprezentuje Command, který umožňuje Hráči „Použít“ použitelné předměty
+ */
 public class Pouzij extends Command {
     private boolean exit;
 
+    /**
+     * Konstruktor nastaví exit na false,
+     * Ze začátku tento příkaz hru ukončovat nebude
+     */
     public Pouzij() {
         exit = false;
     }
 
+    /**
+     * Metoda execute u příkazu Pouzij kontroluje jestli se Hráč může vůbec daný předmět použít a následně spustí finální hádací minihru
+     * @param param String parametr, který byl uživatelem specifikován po příkazu
+     * @param world instance Herního světa
+     * @param player instance Hráče
+     * @return vrací String, který se vypíše
+     */
     @Override
     public String execute(String param, GameData world, Player player) {
 
@@ -55,6 +68,10 @@ public class Pouzij extends Command {
         return world.getEndingStory();
     }
 
+    /**
+     * Metoda exit() zjišťuje, jestli po zavolání tohoto příkazu má hra zrovna skončit, v tomto případě má pouze pokud Hráč dokončil hádací minihru a zvítězil
+     * @return boolean jestli má hra po tomto příkazu skončit (false/true)
+     */
     @Override
     public boolean exit() {
         return exit;

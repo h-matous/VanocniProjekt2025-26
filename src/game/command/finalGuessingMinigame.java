@@ -7,7 +7,7 @@ import game.ui.font;
 import java.util.Random;
 
 /**
- * Třída finalGuessingMinigame, obsahuje metodu play() pro spuštění minihry, která zakončuje celou hru
+ * Třída finalGuessingMinigame, obsahuje metodu play() pro spuštění finální hádací minihry, která zakončuje celou hru
  */
 public class finalGuessingMinigame {
 
@@ -35,7 +35,7 @@ public class finalGuessingMinigame {
     }
 
     /**
-     * Metoda play() slouží k spuštění konečné minihry v které Hráč hádá správné číslo
+     * Metoda play() slouží k spuštění konečné hádací minihry v které Hráč hádá správné číslo
      */
     public void play() {
         int cislo = random.nextInt(minNumber, maxNumber);

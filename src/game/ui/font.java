@@ -1,7 +1,7 @@
 package game.ui;
 
 /**
- * Třída font "písmo" slouží k změně barev nebo jiných vlastností písma pomocí ANSI escapové sekvence
+ * Třída font "písmo" slouží k změně barev nebo jiných vlastností písma pomocí ANSI escapové sekvence v konečném výpisu
  */
 public class font {
     //Modifikace

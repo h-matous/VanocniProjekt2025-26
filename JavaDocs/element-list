@@ -1,0 +1,8 @@
+unnamed package
+game
+game.character
+game.command
+game.command.commands
+game.item
+game.room
+game.ui
