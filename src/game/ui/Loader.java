@@ -2,6 +2,7 @@ package game.ui;
 
 import game.GameData;
 
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -15,7 +16,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 public class Loader {
     /**
-     * Načte herní data z JSON souboru
+     * Načte herní data z JSON souboru v resources
      * @param resourcePath cesta k JSON resource souboru
      * @return vrací instanci objektu s načtenými daty
      */
@@ -39,6 +40,42 @@ public class Loader {
         }
         catch (FileNotFoundException e) {
             throw new RuntimeException("Soubor k načtení světa \"" + resourcePath + "\" nebyl nalezen! Nelze spustit hru!" + "\n" + e.getMessage());
+        }
+        catch (StreamReadException e) {
+            throw new RuntimeException("Vyskytl se problém se zpracováním streamu k načtení herního světa! Nelze spustit hru!" + "\n" + e.getMessage());
+        }
+        catch (DatabindException e) {
+            throw new RuntimeException("Nepovedlo se převést JSON na objekt herního světa! Nelze spustit hru!" + "\n" + e.getMessage());
+        }
+        catch (IOException e) {
+            throw new RuntimeException("Nepovedlo se zahájit komunikaci s JSON souborem k načtení herního světa! Nelze spustit hru!" + "\n" + e.getMessage());
+        }
+        catch (Exception e) {
+            throw new RuntimeException("Nelze načíst herní svět!" + "\n" + e.getMessage());
+        }
+    }
+
+    /**
+     * Načte herní data z externího JSON souboru
+     * @param filePath cesta k JSON souboru
+     * @return vrací instanci objektu s načtenými daty
+     */
+    public static GameData loadGameDataFromFile(String filePath) {
+        //Vytvoření objektu pro práci s JSON souborem
+        ObjectMapper parser = new ObjectMapper();
+
+        try {
+            InputStream is = new FileInputStream(filePath);
+
+            //Přečte celý JSON soubor a vytvoří instanci GameData.class, naplní všechny vlastnosti podle názvů klíčů v JSON souboru, vrátí se hotový objekt
+            GameData loadedGameData = parser.readValue(is, GameData.class);
+
+            is.close(); //Zavře inputStream
+
+            return loadedGameData;
+        }
+        catch (FileNotFoundException e) {
+            throw new RuntimeException("Soubor k načtení světa \"" + filePath + "\" nebyl nalezen! Nelze spustit hru!" + "\n" + e.getMessage());
         }
         catch (StreamReadException e) {
             throw new RuntimeException("Vyskytl se problém se zpracováním streamu k načtení herního světa! Nelze spustit hru!" + "\n" + e.getMessage());

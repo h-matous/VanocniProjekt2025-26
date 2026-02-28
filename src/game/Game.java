@@ -52,8 +52,16 @@ public class Game {
      * Metoda play() slouží k zahájení celé hry
      */
     public void play() {
+        boolean isNewGame;
+
         try {
-            uvod();
+            //Zobrazení menu
+            isNewGame = menu();
+
+            //Jestli je zahájena nová hra, vypíšeme úvod
+            if (isNewGame) {
+                uvod();
+            }
 
             //Zavolání např. nějaké fileWrite metody
             while (!cmdHandler.isAboutToExit()) {
@@ -77,6 +85,17 @@ public class Game {
         }
     }
 
+
+    /**
+     * Slouží k zobrazení
+     * @return vrací boolean, jestli je zahájena nová hra
+     */
+    private boolean menu() {
+        ui.println(font.bold() + world.getGameName() + font.reset());
+        ui.print("\n");
+
+        return true;
+    }
 
     /**
      * Slouží k seznámení Hráče s příběhem, spustí se jen na začátku nové hry

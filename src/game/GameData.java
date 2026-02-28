@@ -12,6 +12,8 @@ import java.util.ArrayList;
  * Reprezentuje herní data načtená z JSON souboru a uchovává veškerá statická data jako třeba Itemy, Postavya Místnosti
  */
 public class GameData {
+    private String gameName;
+
     //items/objects, characters, locations/rooms, quests?
     private ArrayList<Item> items;
     private ArrayList<Character> characters;
@@ -365,5 +367,21 @@ public class GameData {
      */
     public void setPlayFinalGuessingMinigame(boolean playFinalGuessingMinigame) {
         this.playFinalGuessingMinigame = playFinalGuessingMinigame;
+    }
+
+    /**
+     * Slouží k získání názvu hry
+     * @return vrací název hry jako String
+     */
+    public String getGameName() {
+        return gameName;
+    }
+
+    /**
+     * Slouží k nastavení názvu hry
+     * @param gameName název hry jako String, který bude nastaven
+     */
+    public void setGameName(String gameName) {
+        this.gameName = gameName;
     }
 }

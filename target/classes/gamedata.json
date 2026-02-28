@@ -1,4 +1,6 @@
 {
+  "gameName": "Únik z vesmíru",
+
   "items": [
     {"name": "Pojistka", "location":  "Sklad", "movable": true, "interactable":  false, "combinable":  false},
     {"name": "Panel", "location":  "Komunikace", "movable": false, "interactable":  true, "combinable":  false},
@@ -36,7 +38,7 @@
 
   "endingStory": "Ty jsi ten hráč?\nTen, kterému se podařilo zachránit posádku a dokončit misi v návratu zpět na Zemi s mimozemským tvorem?\nDíky tobě věda postoupí dál a budoucnost se akorát může rozvíjet.\nBylo to hodně úsilí a byla potřeba pořádná kuráž.\nTy spolu s Orionem, R5 a Xelem jste se dostali na Zemi.\nMusel jsi vyřešit malfunkci energetického systému, vyrobit novou baterii na pohon vesmírné lodi a navázat spojení komunikace se Zemí.\nJsi opravdový hrdina! <3",
 
-  "hint": "V lodi se roztavila a roztříštila na střepy Pojistka v Chodbě, takže ji musíš nahradit novou pojistkou, která se nachází ve Skladu. Poté z materiálů, které se nacházejí různě po lodi musíš vyrobit novou baterii a umístit ji do Strojovny. Pak už jen zahájit spojení se Zemí přes Použítí Panelu v Komunikaci.",
+  "hint": "V lodi se roztavila a roztříštila na střepy Pojistka v Chodbě, takže ji musíš nahradit novou pojistkou, která se nachází ve Skladu.\nPoté z materiálů, které se nacházejí různě po lodi musíš vyrobit novou baterii a umístit ji do Strojovny.\nPak už jen zahájit spojení se Zemí přes Použítí Panelu v Komunikaci.",
 
   "playFinalGuessingMinigame": false
 }
