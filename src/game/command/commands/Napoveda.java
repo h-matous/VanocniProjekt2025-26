@@ -1,8 +1,11 @@
 package game.command.commands;
 
+
 import game.command.Command;
 import game.GameData;
 import game.Player;
+
+
 
 /**
  * Třída Napoveda reprezentuje Command, který umožňuje Hráči získat nápovědu, pokud si neví rady
@@ -10,8 +13,9 @@ import game.Player;
 public class Napoveda extends Command {
     /**
      * Metoda execute u příkazu Napoveda vypíše Hráči pomocnou nápovědu
-     * @param param String parametr, který byl uživatelem specifikován po příkazu
-     * @param world instance Herního světa
+     *
+     * @param param  String parametr, který byl uživatelem specifikován po příkazu
+     * @param world  instance Herního světa
      * @param player instance Hráče
      * @return vrací String, který se vypíše
      */

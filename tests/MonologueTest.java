@@ -1,3 +1,4 @@
+import game.Game;
 import game.GameData;
 import game.character.Character;
 import game.command.commands.Mluv;

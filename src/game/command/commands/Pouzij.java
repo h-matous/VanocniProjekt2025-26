@@ -8,6 +8,7 @@ import game.item.Item;
 import game.room.Room;
 import game.ui.font;
 
+
 /**
  * Třída Pouzij reprezentuje Command, který umožňuje Hráči „Použít“ použitelné předměty
  */
@@ -24,8 +25,9 @@ public class Pouzij extends Command {
 
     /**
      * Metoda execute u příkazu Pouzij kontroluje jestli se Hráč může vůbec daný předmět použít a následně spustí finální hádací minihru
-     * @param param String parametr, který byl uživatelem specifikován po příkazu
-     * @param world instance Herního světa
+     *
+     * @param param  String parametr, který byl uživatelem specifikován po příkazu
+     * @param world  instance Herního světa
      * @param player instance Hráče
      * @return vrací String, který se vypíše
      */

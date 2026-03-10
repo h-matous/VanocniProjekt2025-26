@@ -2,18 +2,18 @@ package game;
 
 import game.item.Item;
 
+import java.io.Serializable;
+
 /**
- * Třída Player reprezentuje Hráče, obsahuje inventář
+ * Třída Player reprezentuje Hráče, který má inventář
  */
-public class Player {
+public class Player implements Serializable {
     private Item inventory;
 
     /**
-     * Konstruktor nastaví inventář na prázdný
+     * Prázdný konstruktor
      */
-    public Player() {
-        setInventory(null);
-    }
+    public Player() {}
 
     /**
      * Slouží k nastavení inventáře na nový Item

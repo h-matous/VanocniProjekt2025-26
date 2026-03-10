@@ -8,14 +8,16 @@ import game.item.Item;
 import game.room.Room;
 import game.ui.font;
 
+
 /**
  * Třída Vezmi reprezentuje Command, který umožňuje Hráči vzít vybraný Item do inventáře. Tento Item může tedy přenášet po mapě
  */
 public class Vezmi extends Command {
     /**
      * Metoda execute u příkazu Vezmi kontroluje jestli Hráč tento Item může sebrat a následně mu ho přidělí do inventáře
-     * @param param String parametr, který byl uživatelem specifikován po příkazu
-     * @param world instance Herního světa
+     *
+     * @param param  String parametr, který byl uživatelem specifikován po příkazu
+     * @param world  instance Herního světa
      * @param player instance Hráče
      * @return vrací String, který se vypíše
      */

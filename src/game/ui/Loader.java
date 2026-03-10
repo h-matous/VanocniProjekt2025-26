@@ -2,10 +2,7 @@ package game.ui;
 
 import game.GameData;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.databind.DatabindException;
@@ -89,5 +86,33 @@ public class Loader {
         catch (Exception e) {
             throw new RuntimeException("Nelze načíst herní svět!" + "\n" + e.getMessage());
         }
+    }
+
+    /**
+     * Slouží k načtení rozehrané hry
+     * @param gameSavePath cesta k souboru s rozehranou hrou
+     * @return vrací instanci objektu s načtenými daty
+     */
+    public static GameData loadFromSave(String gameSavePath) {
+        GameData world;
+
+        try {
+            FileInputStream fis = new FileInputStream(gameSavePath);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            world = (GameData) ois.readObject();
+            ois.close();
+            fis.close();
+        }
+        catch (FileNotFoundException e) {
+            throw new RuntimeException("Soubor k načtení světa \"" + gameSavePath + "\" nebyl nalezen... " + "\n" + e.getMessage());
+        }
+        catch (ClassNotFoundException e) {
+            throw new RuntimeException("Třída GameData nebyla nalezena... " + "\n" + e.getMessage());
+        }
+        catch (IOException e) {
+            throw new RuntimeException("Nepovedlo se zahájit komunikaci se souborem k načtení herního světa..." + "\n" + e.getMessage());
+        }
+
+        return world;
     }
 }

@@ -3,6 +3,7 @@ package game.command;
 import game.GameData;
 import game.Player;
 
+
 /**
  * Abstraktní třída Command představuje „template“ jak mají třídy všech odděděných příkazů vypadat (mají obsahovat metody execute() a exit())
  */
@@ -19,8 +20,9 @@ public abstract class Command {
 
     /**
      * Metoda execute() slouží k spuštění určitého příkazu
-     * @param param String parametr, který byl uživatelem specifikován po příkazu
-     * @param world instance Herního světa
+     *
+     * @param param  String parametr, který byl uživatelem specifikován po příkazu
+     * @param world  instance Herního světa
      * @param player instance Hráče
      * @return vrací String, který se vypíše
      */

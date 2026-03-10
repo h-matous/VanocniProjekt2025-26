@@ -8,14 +8,16 @@ import game.room.Room;
 import game.item.Item;
 import game.ui.font;
 
+
 /**
  * Třída Poloz reprezentuje Command, který umožňuje Hráči položit Item z jeho inventáře do Místnosti, kde se nachází
  */
 public class Poloz extends Command {
     /**
      * Metoda execute u příkazu Poloz vezme Item z Hráčova inventáře a položí ho do Místnosti, kde právě je a pokud se Item „nainstaluje“ tak se progresuje monolog u Postav
-     * @param param String parametr, který byl uživatelem specifikován po příkazu
-     * @param world instance Herního světa
+     *
+     * @param param  String parametr, který byl uživatelem specifikován po příkazu
+     * @param world  instance Herního světa
      * @param player instance Hráče
      * @return vrací String, který se vypíše
      */

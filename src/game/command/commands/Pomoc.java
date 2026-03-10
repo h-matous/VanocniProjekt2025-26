@@ -4,14 +4,16 @@ import game.command.Command;
 import game.GameData;
 import game.Player;
 
+
 /**
  * Třída Pomoc reprezentuje Command, který Hráč může zavolat, když neví jaké příkazy má k dispozici
  */
 public class Pomoc extends Command {
     /**
      * Metoda execute u příkazu Pomoc vypíše Hráči všechny dostupné příkazy
-     * @param param String parametr, který byl uživatelem specifikován po příkazu
-     * @param world instance Herního světa
+     *
+     * @param param  String parametr, který byl uživatelem specifikován po příkazu
+     * @param world  instance Herního světa
      * @param player instance Hráče
      * @return vrací String, který se vypíše
      */
@@ -27,7 +29,8 @@ public class Pomoc extends Command {
                 "pouzij <předmět>           : použít předmět v místnosti\n" +
                 "mluv <postava>             : mluvit s konkrétní postavou\n" +
                 "prozkoumat                 : zjištění informací o místnosti\n" +
-                "zkombinovat                : zkombinování předmětů do jiného předmětu\n";
+                "zkombinovat                : zkombinování předmětů do jiného předmětu\n" +
+                "ulozithru                  : uložení hry, přepsaní stávajícího save\n";
     }
 
     /**

@@ -1,9 +1,11 @@
 package game.item;
 
+import java.io.Serializable;
+
 /**
  * Třída Item reprezentuje Item/Předmět s názvem, který se nachází v nějaké Místnosti, může být movitý, Použitelný nebo Kombinovatelný
  */
-public class Item {
+public class Item implements Serializable {
     private String name;
 
     private String location;

@@ -6,14 +6,16 @@ import game.Player;
 
 import game.room.Room;
 
+
 /**
  * Třída Jdi reprezentuje Command, který umožňuje Hráči posouvat se po mapě
  */
 public class Jdi extends Command {
     /**
      * Metoda execute u příkazu Jdi kontroluje jestli se Hráč může do této místnosti posunout a následně změní jeho pozici na novou
-     * @param param String parametr, který byl uživatelem specifikován po příkazu
-     * @param world instance Herního světa
+     *
+     * @param param  String parametr, který byl uživatelem specifikován po příkazu
+     * @param world  instance Herního světa
      * @param player instance Hráče
      * @return vrací String, který se vypíše
      */

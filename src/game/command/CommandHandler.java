@@ -48,6 +48,7 @@ public class CommandHandler {
         commandMap.put("mluv", new Mluv());
         commandMap.put("prozkoumat", new Prozkoumat());
         commandMap.put("zkombinovat", new Zkombinovat());
+        commandMap.put("ulozithru", new UlozitHru());
     }
 
     /**

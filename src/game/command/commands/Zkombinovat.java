@@ -11,14 +11,16 @@ import game.ui.font;
 
 import java.util.ArrayList;
 
+
 /**
  * Třída Zkombinovat reprezentuje Command, který umožňuje Hráči zkombinovat nějaké Itemy do jiného Itemu. Tento nový Item může být klíčový k dohrání hry
  */
 public class Zkombinovat extends Command {
     /**
      * Metoda execute u příkazu Zkombinovat kontroluje, jestli jsou splněné podmínky pro kombinaci a poté následné zkombinování určitých Itemů do Itemu jiného
-     * @param param String parametr, který byl uživatelem specifikován po příkazu
-     * @param world instance Herního světa
+     *
+     * @param param  String parametr, který byl uživatelem specifikován po příkazu
+     * @param world  instance Herního světa
      * @param player instance Hráče
      * @return vrací String, který se vypíše
      */

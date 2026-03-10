@@ -2,10 +2,13 @@ package game.character;
 
 import java.util.ArrayList;
 
+import java.io.Serializable;
+
+
 /**
  * Třída Character reprezentuje Postavu v herním světě
  */
-public class Character {
+public class Character implements Serializable {
     private String name;
 
     private String location;

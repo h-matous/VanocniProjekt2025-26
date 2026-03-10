@@ -33,6 +33,7 @@ Krátká textová hra o pilotovi Adamovi, který při jeho vesmírné misi zůst
 | `mluv <postava>`   | mluvit s konkrétní postavou              |
 | `prozkoumat`       | zjištění informací o místnosti           |
 | `zkombinovat`      | zkombinování předmětů do jiného předmětu |
+| `ulozithru`        | uložení hry, přepsání stávajícího save   |
 
 ## Systémové požadavky pro kompilaci
 

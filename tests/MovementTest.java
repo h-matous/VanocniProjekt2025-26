@@ -1,3 +1,4 @@
+import game.Game;
 import game.GameData;
 import game.command.commands.Jdi;
 import game.room.Room;

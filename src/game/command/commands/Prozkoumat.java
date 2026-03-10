@@ -17,8 +17,9 @@ import java.util.ArrayList;
 public class Prozkoumat extends Command {
     /**
      * Metoda execute u příkazu Prozkoumat vypíše všechny zajímavosti, které nabízí Místnost ve které se právě Hráč nachází
-     * @param param String parametr, který byl uživatelem specifikován po příkazu
-     * @param world instance Herního světa
+     *
+     * @param param  String parametr, který byl uživatelem specifikován po příkazu
+     * @param world  instance Herního světa
      * @param player instance Hráče
      * @return vrací String, který se vypíše
      */

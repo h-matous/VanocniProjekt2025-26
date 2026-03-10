@@ -6,14 +6,16 @@ import game.Player;
 
 import game.character.Character;
 
+
 /**
  * Třída Mluv reprezentuje Command, který umožňuje Hráči mluvit s Postavami různě po mapě
  */
 public class Mluv extends Command {
     /**
      * Metoda execute u příkazu Mluv vypíše Hráči to co mu řekne daná Postava
-     * @param param String parametr, který byl uživatelem specifikován po příkazu
-     * @param world instance Herního světa
+     *
+     * @param param  String parametr, který byl uživatelem specifikován po příkazu
+     * @param world  instance Herního světa
      * @param player instance Hráče
      * @return vrací String, který se vypíše
      */

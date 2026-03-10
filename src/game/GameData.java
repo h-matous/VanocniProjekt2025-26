@@ -7,12 +7,20 @@ import game.ui.UI;
 
 import java.util.ArrayList;
 
+import java.io.Serializable;
+
+
 /**
  * Třída GameData obsahuje veškerá data o Herním světě včetně aktuální pozice Hráče
  * Reprezentuje herní data načtená z JSON souboru a uchovává veškerá statická data jako třeba Itemy, Postavya Místnosti
  */
-public class GameData {
+public class GameData implements Serializable {
     private String gameName;
+
+    //player
+    private Player player;
+
+    private String gameSavePath;
 
     //items/objects, characters, locations/rooms, quests?
     private ArrayList<Item> items;
@@ -41,6 +49,38 @@ public class GameData {
      * Prázdný konstruktor pro načítání Herního světa GameData s jackson
      */
     public GameData() {}
+
+    /**
+     * Slouží k získání instance Hráče
+     * @return vrací instanci Hráče
+     */
+    public Player getPlayer() {
+        return player;
+    }
+
+    /**
+     * Slouží k nastavení Hráče
+     * @param player Hráč jako objekt
+     */
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    /**
+     * Slouží k získání cesty k souboru na případné uložení hry
+     * @return vrací cestu k souboru jako String
+     */
+    public String getGameSavePath() {
+        return gameSavePath;
+    }
+
+    /**
+     * Slouží k nastavení cesty, kde se bude nacházet uložení hry
+     * @param gameSavePath cesta k nastení jako String
+     */
+    public void setGameSavePath(String gameSavePath) {
+        this.gameSavePath = gameSavePath;
+    }
 
     /**
      * Spouštění finální hádací minihry, kterou následuje konec a výhra hry

@@ -21,7 +21,7 @@ import game.Game;
  * <br>
  * vyřešit a dostat se zpět na Zemi.
  * @author Matouš Hruška, C2b
- * @version 0.9999999999999999999999
+ * @version 0.99999999999999999999999
  */
 public class Main {
     public static void main(String[] args) {

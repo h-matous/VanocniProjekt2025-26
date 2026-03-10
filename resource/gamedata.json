@@ -1,6 +1,10 @@
 {
   "gameName": "Únik z vesmíru",
 
+  "player": {"inventory": null},
+
+  "gameSavePath": "save.dat",
+
   "items": [
     {"name": "Pojistka", "location":  "Sklad", "movable": true, "interactable":  false, "combinable":  false},
     {"name": "Panel", "location":  "Komunikace", "movable": false, "interactable":  true, "combinable":  false},

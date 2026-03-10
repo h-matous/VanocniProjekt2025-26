@@ -3,12 +3,13 @@ package game.room;
 import game.ui.UI;
 import game.ui.font;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Třída Room reprezentuje Místnost ve hře a na mapě
  */
-public class Room {
+public class Room implements Serializable {
     private String name;
 
     private ArrayList<String> availableRoomNames;
